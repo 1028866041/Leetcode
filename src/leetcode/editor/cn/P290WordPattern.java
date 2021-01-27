@@ -24,35 +24,37 @@
 //
 // 说明: 
 //你可以假设 pattern 只包含小写字母， str 包含了由单个空格分隔的小写字母。 
-// Related Topics 哈希表
-
+// Related Topics 哈希表 
+// 👍 302 👎 0
 
 package leetcode.editor.cn;
 
 import java.util.HashMap;
+import java.util.Map;
 
-//Java：单词规律
 public class P290WordPattern{
     public static void main(String[] args) {
-        Solution solution = new P290WordPattern().new Solution();
         // TO TEST
-        System.out.println(solution);
-    }
+        Solution solution = new P290WordPattern().new Solution();
+        System.out.println(solution.wordPattern("abba","dog dog dog dog"));
+    }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean wordPattern(String pattern, String str) {
-        HashMap<Character,String> map= new HashMap<Character, String>();
-
-        if(pattern.length()!= str.split(" ").length){
+    public boolean wordPattern(String pattern, String s) {
+        Map<Character,String> map= new HashMap<>();
+        Map<String, Character> maps= new HashMap<>();
+        if(s.split(" ").length!=pattern.length())
             return false;
-        }
         for(int i=0;i<pattern.length();i++){
             if(!map.containsKey(pattern.charAt(i))){
-                map.put(pattern.charAt(i), str.split(" ")[i]);
-            }else{
-                if(!map.get(pattern.charAt(i)).equals(str.split(" ")[i])){
-                    return false;
+                for(Character key: map.keySet()){
+                    if(map.get(key).equals(s.split(" ")[i]))
+                        return false;
                 }
+                map.put(pattern.charAt(i), s.split(" ")[i]);
+            }else{
+                if(!map.get(pattern.charAt(i)).equals(s.split(" ")[i]))
+                    return false;
             }
         }
         return true;

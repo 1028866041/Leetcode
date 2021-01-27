@@ -16,14 +16,17 @@
 //    /  \
 //   15   7 
 // Related Topics 树 深度优先搜索 数组 
-// 👍 815 👎 0
+// 👍 822 👎 0
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class P105ConstructBinaryTreeFromPreorderAndInorderTraversal{
     public static void main(String[] args) {
-        Solution solution = new P105ConstructBinaryTreeFromPreorderAndInorderTraversal().new Solution();
         // TO TEST
+        Solution solution = new P105ConstructBinaryTreeFromPreorderAndInorderTraversal().new Solution();
         System.out.println(solution);
     }
     public class TreeNode {
@@ -43,8 +46,26 @@ public class P105ConstructBinaryTreeFromPreorderAndInorderTraversal{
  * }
  */
 class Solution {
+    Map<Integer,Integer> map= new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        throw new IllegalArgumentException("error");
+        if(preorder.length==0|| inorder.length==0)
+            return null;
+
+        for(int i=0;i<inorder.length;i++){
+            map.put(inorder[i], i);
+        }
+        return traverse(preorder, inorder,0,preorder.length-1,0,inorder.length-1);
+    }
+
+    public TreeNode traverse(int[] preorder, int[] inorder, int pl, int pr, int il, int ir){
+        if(pl> pr)
+            return null;
+
+        int size= map.get(preorder[pl])- il;
+        TreeNode root= new TreeNode(preorder[pl]);
+        root.left= traverse(preorder, inorder,pl+1,pl+size, il,ir-1);
+        root.right= traverse(preorder, inorder,pl+size+1, pr,map.get(preorder[pl])+1, ir);
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -15,20 +15,31 @@
 //输出: 0
 //解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。 
 // Related Topics 数组 动态规划 
-// 👍 888 👎 0
+// 👍 906 👎 0
 
 package leetcode.editor.cn;
-
+ 
 public class P152MaximumProductSubarray{
     public static void main(String[] args) {
-        Solution solution = new P152MaximumProductSubarray().new Solution();
         // TO TEST
-        System.out.println(solution);
-    }
+        Solution solution = new P152MaximumProductSubarray().new Solution();
+        System.out.println(solution.maxProduct(new int[]{2,3,-2,4}));
+    }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxProduct(int[] nums) {
-        throw new IllegalArgumentException("error");
+        int[] dp1= new int[nums.length];
+        int[] dp2= new int[nums.length];
+        dp1[0]=dp2[0]= nums[0];
+
+        for(int i=1;i<nums.length;i++){
+            dp1[i]= Math.max(Math.max(dp1[i-1]*nums[i], dp2[i-1]*nums[i]),nums[i]);
+            dp2[i]= Math.min(Math.min(dp1[i-1]*nums[i], dp2[i-1]*nums[i]),nums[i]);
+        }
+        int res= dp1[0];
+        for(int i=0;i<nums.length;i++)
+            res= res>dp1[i]?res:dp1[i];
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

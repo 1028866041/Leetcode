@@ -13,23 +13,32 @@
 //  5     4       <---
 // 
 // Related Topics 树 深度优先搜索 广度优先搜索 
-// 👍 386 👎 0
+// 👍 397 👎 0
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class P199BinaryTreeRightSideView{
     public static void main(String[] args) {
-        Solution solution = new P199BinaryTreeRightSideView().new Solution();
         // TO TEST
+        Solution solution = new P199BinaryTreeRightSideView().new Solution();
         System.out.println(solution);
     }
     public class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -38,13 +47,35 @@ public class P199BinaryTreeRightSideView{
  *     int val;
  *     TreeNode left;
  *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
  * }
  */
 class Solution {
+    Map<Integer, Integer> map= new HashMap<>();
     public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res= new ArrayList<>();
+        if(root==null)
+            return res;
+        traverse(root, 0);
 
-        throw new IllegalArgumentException("error");
+        for(int i:map.values())
+            res.add(i);
+        return res;
+    }
+
+    public void traverse(TreeNode root, int idx){
+        if(root==null)
+            return;
+        traverse(root.right, idx+1);
+        if(!map.containsKey(idx))
+            map.put(idx, root.val);
+        traverse(root.left, idx+1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

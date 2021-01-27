@@ -45,17 +45,35 @@
 // 👍 746 👎 0
 
 package leetcode.editor.cn;
-
+ 
 public class P48RotateImage{
     public static void main(String[] args) {
-        Solution solution = new P48RotateImage().new Solution();
         // TO TEST
-        System.out.println(solution);
+        Solution solution = new P48RotateImage().new Solution();
+        solution.rotate(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public void rotate(int[][] matrix) {
+        int n=matrix.length;
 
+        for(int i=0;i<n/2;i++){
+            for(int j=0;j<(n+1)/2;j++){
+                int temp= matrix[i][j];
+                //两步(i,j)->(j,n-1-i)->(n-1-i,n-1-j)
+                matrix[i][j]= matrix[n-1-j][i];
+                matrix[n-1-j][i]= matrix[n-1-i][n-1-j];
+                matrix[n-1-i][n-1-j]= matrix[j][n-1-i];
+                matrix[j][n-1-i]= temp;
+            }
+        }
+        /*
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                System.out.print(matrix[i][j]+" ");
+            }
+            System.out.println("");
+        }*/
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
