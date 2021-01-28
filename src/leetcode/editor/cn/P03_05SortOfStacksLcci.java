@@ -44,9 +44,7 @@ class SortedStack {
     Stack<Integer> stack= new Stack<>();
     Stack<Integer> stack2= new Stack<>();
     public SortedStack() {
-
     }
-    
     public void push(int val) {
         while(!stack.isEmpty()&& stack.peek()<val){
             stack2.push(stack.peek());

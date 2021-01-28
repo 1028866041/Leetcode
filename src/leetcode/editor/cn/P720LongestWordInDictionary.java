@@ -35,7 +35,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 //Java：词典中最长的单词
@@ -48,61 +50,31 @@ public class P720LongestWordInDictionary{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String longestWord(String[] words) {
-        Trie trie= new Trie();
-        int index=0;
-        for(String word:words){
-            trie.insert(word, ++index);
+        List<String> ls= new ArrayList<>();
+        String strs= "";
+        for(String s:words){
+            ls.add(s);
         }
-        //todo throw debug
-        trie.words= words;
-        return trie.traverse();
-    }
-}
-
-class Node{
-    char c;
-    int end;
-    HashMap<Character,Node> child= new HashMap<>();
-    public Node(char c){
-        this.c=c;
-    }
-}
-class Trie{
-    Node root;
-    String[] words;
-    public Trie(){
-        root = new Node('0');
-    }
-    public void insert(String str, int idx){
-        Node cur= root;
-        for(char c:str.toCharArray()){
-            cur.child.putIfAbsent(c, new Node(c));
-            cur= cur.child.get(c);
-        }
-        cur.end= idx;
-    }
-
-    public String traverse(){
-        String result= "";
-        Stack<Node> stack= new Stack<>();
-        stack.push(root);
-        while(!stack.empty()){
-            Node node= stack.pop();
-            if(node.end>0|| node==root){
-                if(node!= root){
-                    String word= words[node.end-1];
-                    if(word.length()>result.length()||word.length()==result.length()){
-                        result= word;
-                    }
-                }
-                for(Node nei:node.child.values()){
-                    stack.push(nei);
-                }
+        for(int i=0;i<ls.size();i++){
+            String str= ls.get(i);
+            boolean flag= true;
+            while(!str.equals("")){
+                flag=flag&&ls.contains(str);
+                str= str.substring(0, str.length()-1);
+            }
+            if(!flag)
+                continue;
+            str= ls.get(i);
+            if(str.length()>strs.length())
+                strs= str;
+            if(str.length()==strs.length()&& strs.compareTo(str)>0){
+                strs= str;
             }
         }
-        return result;
+        return strs;
     }
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -50,6 +50,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.Stack;
+
 public class P71SimplifyPath{
     public static void main(String[] args) {
         Solution solution = new P71SimplifyPath().new Solution();
@@ -59,9 +61,26 @@ public class P71SimplifyPath{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String simplifyPath(String path) {
-        throw new IllegalArgumentException("error");
+        Stack<String> stack= new Stack<>();
+        for(String str:path.split("/")){
+            if(str.equals("..")){
+                if(!stack.empty())
+                    stack.pop();
+            }else if(!str.equals(".")&&!str.equals("")){
+                stack.push(str);
+            }
+        }
+        if(stack.isEmpty()){
+            return "/";
+        }
+        StringBuilder ans= new StringBuilder();
+        for(int i=0;i<stack.size();i++) {
+            ans.append("/"+stack.get(i));
+        }
+        return ans.toString();
     }
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -41,17 +41,30 @@ public class P17_18ShortestSupersequenceLcci{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] shortestSeq(int[] big, int[] small) {
-        Arrays.sort(small);
-        Map<Integer, List<Integer>> map= new HashMap<>();
-
-        for(int i=0;i<small.length;i++){
-
-
-
-
+        int[] res= {0, big.length};
+        Map<Integer, Integer> map= new HashMap<>();
+        for(int i=0;i<small.length;i++)
+            map.put(small[i], -1);
+        int count= small.length;
+        for(int j=0;j<big.length;j++){
+            if(map.containsKey(big[j])) {
+                if (map.get(big[j]) == -1)
+                    count--;
+                map.put(big[j], j);
+            }
+            if(count<=0){
+                int min= Integer.MAX_VALUE;;
+                for(int k:map.values())
+                    min= k>min?min:k;
+                if(j-min+1<res[1]-res[0]){
+                    res[0]= min;
+                    res[1]= j;
+                }
+            }
         }
-
-        throw new IllegalArgumentException("error");
+        if(count>0)
+            return new int[0];
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

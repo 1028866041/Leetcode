@@ -56,6 +56,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class P146LruCache{
     public static void main(String[] args) {
         LRUCache solution = new P146LruCache().new LRUCache(0);
@@ -63,18 +66,24 @@ public class P146LruCache{
         System.out.println(solution);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-class LRUCache {
-
+class LRUCache extends LinkedHashMap<Integer,Integer> {
+    int capacity;
     public LRUCache(int capacity) {
-
+        super(capacity,0.75F,true);
+        this.capacity= capacity;
     }
-    
+
     public int get(int key) {
-        throw new IllegalArgumentException("error");
+        return super.getOrDefault(key, -1);
     }
-    
-    public void put(int key, int value) {
 
+    public void put(int key, int value) {
+        super.put(key, value);
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity;
     }
 }
 

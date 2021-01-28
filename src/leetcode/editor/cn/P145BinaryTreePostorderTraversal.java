@@ -17,6 +17,7 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class P145BinaryTreePostorderTraversal{
@@ -54,8 +55,14 @@ public class P145BinaryTreePostorderTraversal{
  * }
  */
 class Solution {
+    List<Integer> ans= new ArrayList<>();
     public List<Integer> postorderTraversal(TreeNode root) {
-        throw new IllegalArgumentException("error");
+        if(root==null)
+            return ans;
+        postorderTraversal(root.left);
+        postorderTraversal(root.right);
+        ans.add(root.val);
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

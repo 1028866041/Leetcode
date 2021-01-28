@@ -37,26 +37,30 @@ public class P733FloodFill{
     public static void main(String[] args) {
         Solution solution = new P733FloodFill().new Solution();
         // TO TEST
-        System.out.println(solution);
+        System.out.println(solution.floodFill(new int[][]{{1,1,1},{1,1,0},{1,0,1}},1,1,2)[1][0]);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        if(sr<0 ||sc<0 ||sr>image.length || sc>image[0].length){
+        if(image.length==0|| image[0].length==0)
             return image;
-        }
-        //todo throw debug
+        boolean[][] visited= new boolean[image.length][image[0].length];
+        for(int i=0;i<image.length;i++)
+            for(int j=0;j<image[0].length;j++)
+                traverse(image, sr, sc, image[i][j], newColor, visited);
         return image;
     }
 
-    public void traverse(int[][] image, int sr, int sc, int color, int newColor){
-        if(sr<0 ||sc<0 ||sr>image.length || sc>image[0].length){
+    public void traverse(int[][] image, int sr, int sc, int color, int newColor, boolean[][] visited){
+        if(sr<0||sc<0||sr>=image.length||sc>=image[0].length|| image[sr][sc]!=color||visited[sr][sc])
             return;
+        int[][] direction= {{-1,0},{0,1},{1,0},{0,-1}};
+
+        image[sr][sc]= newColor;
+        visited[sr][sc]= true;
+        for(int[] dir: direction){
+            traverse(image, sr+dir[0], sc+dir[1], color, newColor, visited);
         }
-        traverse(image, sr+1,sc,color,newColor);
-        traverse(image, sr-1,sc,color,newColor);
-        traverse(image, sr,sc+1,color,newColor);
-        traverse(image, sr,sc-1,color,newColor);
     }
 }
 
