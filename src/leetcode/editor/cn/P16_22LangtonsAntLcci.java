@@ -45,24 +45,79 @@
 
 package leetcode.editor.cn;
 
-import java.util.List;
+import javafx.geometry.Pos;
+
+import javax.swing.text.Position;
+import java.util.*;
 
 public class P16_22LangtonsAntLcci{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P16_22LangtonsAntLcci().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.printKMoves(5));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    private class Position{
+        int x,y;
+        public Position(int x, int y){
+            this.x= x;
+            this.y= y;
+        }
+        @Override
+        public boolean equals(Object obj){
+            if(obj==this)
+                return true;
+            if(!(obj instanceof Position))
+                return false;
+            Position o=(Position)obj;
+            return x==o.x&&y==o.y;
+        }
+        @Override
+        public int hashCode(){
+            int i= x;
+            i= i*30+y;
+            return i;
+        }
+    }
     public List<String> printKMoves(int K) {
+        char[] direction= {'L','U','R','D'};
+        int[][] offset= {{-1,0},{0,-1},{1,0},{0,1}};
+        Position pos= new Position(0,0);
+        int dir=2;
+        Set<Position> set= new HashSet<>();
 
+        while(K>0) {
+            Position t= new Position(pos.x, pos.y);
+            if(set.add(t))
+                dir= (dir+1)%4;
+            else{
+                dir= (dir+3)%4;
+                set.remove(t);
+            }
+            pos.x+= offset[dir][0];
+            pos.y+= offset[dir][1];
+            K--;
+        }
 
+        int left= pos.x,top=pos.y,right=pos.x,bottom=pos.y;
+        for(Position p: set){
+            left= p.x<left?p.x:left;
+            top= p.y<top?p.y:top;
+            right= p.x>right?p.x:right;
+            bottom= p.y>bottom?p.y:bottom;
+        }
 
-
-
-
-        throw new IllegalArgumentException("error");
+        char[][]grid= new char[bottom-top+1][right-left+1];
+        for(char[] row:grid)
+            Arrays.fill(row,'_');
+        for(Position p:set)
+            grid[p.y-top][p.x-left]= 'X';
+        grid[pos.y-top][pos.x-left]= direction[dir];
+        List<String> res= new ArrayList<>();
+        for(char[] row:grid)
+            res.add(String.valueOf(row));
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

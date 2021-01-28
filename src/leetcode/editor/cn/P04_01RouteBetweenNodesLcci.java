@@ -18,7 +18,7 @@
 // 
 // 节点数量n在[0, 1e5]范围内。 
 // 节点编号大于等于 0 小于 n。 
-// 图中可能存在自环和平行边。 
+// 图中可能存在自环和平行边。
 // 
 // Related Topics 图 
 // 👍 20 👎 0
@@ -33,16 +33,22 @@ public class P04_01RouteBetweenNodesLcci{
      }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    boolean[] visited;
     public boolean findWhetherExistsPath(int n, int[][] graph, int start, int target){
-
-
-        throw new IllegalArgumentException("error");
-    }
-
-    public void travers(){
-
-
-
+        if(visited==null)
+            visited= new boolean[graph.length];
+        for(int i=0;i<graph.length;i++){
+            if(visited[i])
+                continue;
+            if(graph[i][0]==start&&graph[i][1]==target)
+                return true;
+            visited[i]= true;
+            /*已找到target能否找到start*/
+            if(graph[i][1]==target&& findWhetherExistsPath(n, graph, start, graph[i][0]))
+                return true;
+            visited[i]= false;
+        }
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

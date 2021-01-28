@@ -26,18 +26,31 @@
 // 👍 154 👎 0
 
 package leetcode.editor.cn;
- 
+
 public class P60NgeTouZiDeDianShuLcof{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P60NgeTouZiDeDianShuLcof().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.dicesProbability(2)[0]);
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public double[] dicesProbability(int n) {
+        int[][] dp= new int[15][70];
+        for(int i=1;i<=6;i++)
+            dp[1][i]= 1;
 
-        throw new IllegalArgumentException("error");
+        for(int i=2;i<=n;i++)
+            for(int j=i;j<=6*i;j++)
+                for(int k=1;k<=6;k++){
+                    if(j<=k)
+                        break;
+                    dp[i][j]+= dp[i-1][j-k];
+                }
+        double[] res= new double[5*n+1];
+        for(int i=n;i<=6*n;i++)
+            res[i-n]= dp[n][i]*1.0/Math.pow(6,n);
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

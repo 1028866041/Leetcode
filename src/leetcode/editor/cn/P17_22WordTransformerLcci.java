@@ -28,7 +28,10 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class P17_22WordTransformerLcci{
     public static void main(String[] args) {
@@ -38,9 +41,47 @@ public class P17_22WordTransformerLcci{
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    List<String> res= new ArrayList<>();
     public List<String> findLadders(String beginWord, String endWord, List<String> wordList) {
+        if(beginWord.length()==0||endWord.length()==0)
+            return res;
+        backtrack(beginWord, endWord, wordList, new boolean[wordList.size()]);
+        return res;
+    }
 
+    public void backtrack(String beginWord, String endWord, List<String> worldList, boolean[] visited){
+        res.add(beginWord);
+        Queue<String> queue= valid(beginWord, worldList, visited);
+        for(String str:queue){
+            if(str.equals(endWord)){
+                res.add(str);
+                return;
+            }
+            backtrack(str, endWord, worldList, visited);
+            res.remove(res.size()-1);
+        }
         throw new IllegalArgumentException("error");
+    }
+
+    public Queue<String> valid(String s, List<String> worldList, boolean[] visited){
+        Queue<String> queue= new LinkedList<>();
+        for(int i=0;i<worldList.size();i++){
+            worldList.get(i);
+            int cnt=0;
+            if(worldList.get(i).length()!=s.length()||visited[i])
+                continue;
+            for(int j=0;j<worldList.get(i).length();j++){
+                if(cnt>=2)
+                    continue;
+                if(worldList.get(i).charAt(j)!=s.charAt(j))
+                    cnt++;
+            }
+            if(cnt==1){
+                queue.add(worldList.get(i));
+                visited[i]= true;
+            }
+        }
+        return queue;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

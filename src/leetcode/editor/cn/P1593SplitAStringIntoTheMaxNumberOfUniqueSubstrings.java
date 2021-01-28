@@ -44,17 +44,38 @@
 // 👍 19 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class P1593SplitAStringIntoTheMaxNumberOfUniqueSubstrings{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1593SplitAStringIntoTheMaxNumberOfUniqueSubstrings().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.maxUniqueSplit("aba"));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    int res= 0;
     public int maxUniqueSplit(String s) {
-        throw new IllegalArgumentException("error");
+        backtrack(s, new ArrayList<>(),0);
+        return res;
+    }
+
+    public void backtrack(String s, List<String> ls, int idx){
+        if(ls.size()<res-s.length()+idx)
+            return;
+        if(idx==s.length()){
+            res= res>ls.size()?res:ls.size();
+            return;
+        }
+        for(int i=idx;i<s.length();i++){
+            if(!ls.contains(s.substring(idx,i+1))){
+                ls.add(s.substring(idx,i+1));
+                backtrack(s, ls, i+1);
+                ls.remove(s.substring(idx, i+1));
+            }
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

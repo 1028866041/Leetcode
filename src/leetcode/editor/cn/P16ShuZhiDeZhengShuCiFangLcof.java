@@ -43,11 +43,24 @@ public class P16ShuZhiDeZhengShuCiFangLcof{
         System.out.println(solution);
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution  {
     public double myPow(double x, int n) {
-        throw new IllegalArgumentException("error");
+        long N=n;
+        if(N>=0){
+            return myMul(x,N);
+        }else{
+            return 1.0/myMul(x,-N);
+        }
+    }
+
+    public double myMul(double x, long n){
+        if(n==0)
+            return 1.0;
+        double y= myMul(x,n/2);
+        return (n%2==1)?y*y*x:y*y;
     }
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
