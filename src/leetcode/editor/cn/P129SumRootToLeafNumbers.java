@@ -61,9 +61,19 @@ public class P129SumRootToLeafNumbers{
  */
 class Solution {
     public int sumNumbers(TreeNode root) {
+        return traverse(root, 0);
+    }
 
+    public int traverse(TreeNode root, int num){
+        if(root==null)
+            return 0;
 
-        throw new IllegalArgumentException("error");
+        int sum= num*10+root.val;
+        if(root.left==null&&root.right==null)
+            return sum;
+        else{
+            return traverse(root.left,sum)+traverse(root.right,sum);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

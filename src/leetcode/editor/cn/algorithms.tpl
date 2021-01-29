@@ -25,7 +25,7 @@ func backtrack(num[], ls, idx){
     //visited[idx]=true;
 	for(i=idx;i<num.length,i++){
 		ls.add(num[i]);
-		backtrack(num, ls, i);
+		backtrack(num, ls, i+1);
 		ls.remove(ls.size()-1);
 	}
 	//visited[idx]= false;

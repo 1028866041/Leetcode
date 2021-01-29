@@ -32,6 +32,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class P207CourseSchedule{
     public static void main(String[] args) {
         Solution solution = new P207CourseSchedule().new Solution();
@@ -41,8 +44,29 @@ public class P207CourseSchedule{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> res= new ArrayList<>();
+        for(int i=0;i<numCourses;i++)
+            res.add(new ArrayList<>());
+        int[] flags= new int[numCourses];
+         for(int[] cur:prerequisites)
+            res.get(cur[1]).add(cur[0]);
+        for(int i=0;i<numCourses;i++)
+            if(!traverse(res, flags, i))
+                return false;
+        return false;
+    }
 
-        throw new IllegalArgumentException("error");
+    public boolean traverse(List<List<Integer>> res, int[] flag, int i){
+        if(flag[i]==1)
+            return false;
+        if(flag[i]==-1)
+            return true;
+        flag[i]= 1;
+        for(Integer j:res.get(i))
+            if(!traverse(res, flag, j))
+                return false;
+        flag[i]= -1;
+        return true;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
