@@ -22,6 +22,10 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class P208ImplementTriePrefixTree{
     public static void main(String[] args) {
         Trie solution = new P208ImplementTriePrefixTree().new Trie();
@@ -30,25 +34,48 @@ public class P208ImplementTriePrefixTree{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Trie {
-
+    Trie[] next;
+    boolean end;
     /** Initialize your data structure here. */
     public Trie() {
-
+        next= new Trie[26];
+        end= false;
     }
-    
+
     /** Inserts a word into the trie. */
     public void insert(String word) {
-
+        Trie cur= this;
+        for(int i=0;i<word.length();i++){
+            int j= word.charAt(i)-'a';
+            if(cur.next[j]==null)
+                cur.next[j]= new Trie();
+            cur= cur.next[j];
+        }
+        cur.end= true;
     }
     
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
-        throw new IllegalArgumentException("error");
+        Trie cur= this;
+        for(int i=0;i<word.length();i++){
+            int j= word.charAt(i)-'a';
+            if(cur.next[j]==null)
+                return false;
+            cur= cur.next[j];
+        }
+        return cur.end;
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
-        throw new IllegalArgumentException("error");
+        Trie cur= this;
+        for(int i=0;i<prefix.length();i++){
+            int j= prefix.charAt(i)-'a';
+            if(cur.next[j]==null)
+                return false;
+            cur= cur.next[j];
+        }
+        return true;
     }
 }
 

@@ -35,6 +35,7 @@ public class P81SearchInRotatedSortedArrayIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean search(int[] nums, int target) {
+
         throw new IllegalArgumentException("error");
     }
 }

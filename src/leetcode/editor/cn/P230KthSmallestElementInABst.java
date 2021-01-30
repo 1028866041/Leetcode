@@ -32,6 +32,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class P230KthSmallestElementInABst{
     public static void main(String[] args) {
         Solution solution = new P230KthSmallestElementInABst().new Solution();
@@ -67,8 +70,20 @@ public class P230KthSmallestElementInABst{
  * }
  */
 class Solution {
+    List<Integer> ls= new ArrayList<>();
     public int kthSmallest(TreeNode root, int k) {
-        throw new IllegalArgumentException("error");
+        if(root==null)
+            return -1;
+        traverse(root);
+        return ls.get(k-1);
+    }
+
+    public void traverse(TreeNode root){
+        if(root==null)
+            return;
+        traverse(root.left);
+        ls.add(root.val);
+        traverse(root.right);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

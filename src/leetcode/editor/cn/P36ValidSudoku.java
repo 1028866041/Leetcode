@@ -60,6 +60,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class P36ValidSudoku{
     public static void main(String[] args) {
         Solution solution = new P36ValidSudoku().new Solution();
@@ -69,10 +72,29 @@ public class P36ValidSudoku{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-
-
-
-        throw new IllegalArgumentException("error");
+        Map<Integer,Integer>[] row= new HashMap[9];
+        Map<Integer,Integer>[] colum= new HashMap[9];
+        Map<Integer,Integer>[] box= new HashMap[9];
+        for(int i=0;i<9;i++){
+            row[i]= new HashMap<>();
+            colum[i]= new HashMap<>();
+            box[i]= new HashMap<>();
+        }
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                char num= board[i][j];
+                if(num=='.')
+                    continue;
+                int n=(int)num;
+                int index= (i/3)*3+j/3;
+                row[i].put(n, row[i].getOrDefault(n,0)+1);
+                colum[j].put(n, colum[j].getOrDefault(n,0)+1);
+                box[index].put(n, box[index].getOrDefault(n,0)+1);
+                if(row[i].get(n)>1|| colum[j].get(n)>1|| box[index].get(n)>1)
+                    return false;
+            }
+        }
+        return true;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

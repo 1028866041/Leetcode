@@ -41,7 +41,7 @@ public class P17_22WordTransformerLcci{
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    List<String> res= new ArrayList<>();
+    List<String> res= new ArrayList<>(),output= new ArrayList<>();
     public List<String> findLadders(String beginWord, String endWord, List<String> wordList) {
         if(beginWord.length()==0||endWord.length()==0)
             return res;
@@ -50,29 +50,28 @@ class Solution {
     }
 
     public void backtrack(String beginWord, String endWord, List<String> worldList, boolean[] visited){
-        res.add(beginWord);
+        output.add(beginWord);
         Queue<String> queue= valid(beginWord, worldList, visited);
         for(String str:queue){
             if(str.equals(endWord)){
-                res.add(str);
+                output.add(str);
+                res= new ArrayList<>(output);
                 return;
             }
             backtrack(str, endWord, worldList, visited);
-            res.remove(res.size()-1);
+            output.remove(output.size()-1);
         }
-        throw new IllegalArgumentException("error");
     }
 
     public Queue<String> valid(String s, List<String> worldList, boolean[] visited){
         Queue<String> queue= new LinkedList<>();
         for(int i=0;i<worldList.size();i++){
-            worldList.get(i);
             int cnt=0;
             if(worldList.get(i).length()!=s.length()||visited[i])
                 continue;
             for(int j=0;j<worldList.get(i).length();j++){
                 if(cnt>=2)
-                    continue;
+                    break;
                 if(worldList.get(i).charAt(j)!=s.charAt(j))
                     cnt++;
             }

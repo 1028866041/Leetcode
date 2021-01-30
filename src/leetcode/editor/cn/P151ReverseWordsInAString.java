@@ -67,6 +67,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class P151ReverseWordsInAString{
     public static void main(String[] args) {
         Solution solution = new P151ReverseWordsInAString().new Solution();
@@ -76,7 +79,17 @@ public class P151ReverseWordsInAString{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String reverseWords(String s) {
-        throw new IllegalArgumentException("error");
+        List<String> ls= new ArrayList<>();
+        for(String str:s.split(" ")){
+            String strs=str.replace(" ","");
+            if(!strs.equals(""))
+                ls.add(strs);
+        }
+        s="";
+        for(int i=0;i<ls.size();i++){
+            s+= ls.get(ls.size()-i-1)+" ";
+        }
+        return s.length()>=1?s.substring(0, s.length()-1):s;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

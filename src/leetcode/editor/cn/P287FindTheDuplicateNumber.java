@@ -58,6 +58,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.Arrays;
+
 public class P287FindTheDuplicateNumber{
     public static void main(String[] args) {
         Solution solution = new P287FindTheDuplicateNumber().new Solution();
@@ -67,7 +69,13 @@ public class P287FindTheDuplicateNumber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int findDuplicate(int[] nums) {
-        throw new IllegalArgumentException("error");
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]<i+1){
+                return nums[i];
+            }
+        }
+        return -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

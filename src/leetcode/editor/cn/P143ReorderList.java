@@ -41,7 +41,26 @@ public class P143ReorderList{
  */
 class Solution {
     public void reorderList(ListNode head) {
-        throw new IllegalArgumentException("error");
+        if(head==null)
+            return;
+        ListNode pos=head,tail=pos,pre=pos;
+        while(pos!=null){
+            tail= pos;
+            pos= pos.next;
+        }
+        pos=head;
+        while(pos!=null){
+            if(pos==tail)
+                break;;
+            pre= pos;
+            pos= pos.next;
+        }
+        if(pre==head)
+            return;
+        pre.next= null;
+        reorderList(head.next);
+        tail.next= head.next;
+        head.next= tail;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

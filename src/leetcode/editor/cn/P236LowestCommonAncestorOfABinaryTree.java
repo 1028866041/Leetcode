@@ -59,8 +59,21 @@ public class P236LowestCommonAncestorOfABinaryTree{
  * }
  */
 class Solution {
+    TreeNode res= null;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        throw new IllegalArgumentException("error");
+        traverse(root, p, q);
+        return res;
+    }
+
+    public boolean traverse(TreeNode root, TreeNode p, TreeNode q){
+        if(root==null)
+            return false;
+        boolean lson= traverse(root.left, p,q);
+        boolean rson= traverse(root.right, p,q);
+        if((lson||rson)&&(root.val==p.val||root.val==q.val)||(lson&&rson)){
+            res= root;
+        }
+        return lson||rson||(root.val==p.val||root.val==q.val);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
