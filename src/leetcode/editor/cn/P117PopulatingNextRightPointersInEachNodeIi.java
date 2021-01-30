@@ -48,6 +48,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class P117PopulatingNextRightPointersInEachNodeIi{
     public static void main(String[] args) {
         Solution solution = new P117PopulatingNextRightPointersInEachNodeIi().new Solution();
@@ -99,8 +102,23 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-
-        throw new IllegalArgumentException("error");
+        if(root==null)
+            return root;
+        Queue<Node> queue= new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int num= queue.size();
+            for(int i=0;i<num;i++){
+                Node node= queue.poll();
+                if(i<num-1)
+                    node.next= queue.peek();
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                    queue.offer(node.right);
+            }
+        }
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

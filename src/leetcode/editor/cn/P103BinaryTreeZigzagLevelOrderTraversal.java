@@ -25,7 +25,7 @@
 
 package leetcode.editor.cn;
 
-import java.util.List;
+import java.util.*;
 
 public class P103BinaryTreeZigzagLevelOrderTraversal{
     public static void main(String[] args) {
@@ -51,7 +51,29 @@ public class P103BinaryTreeZigzagLevelOrderTraversal{
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        throw new IllegalArgumentException("error");
+        Queue<TreeNode> queue= new LinkedList<>();
+        List<List<Integer>> res= new ArrayList<>();
+        if(root==null)
+            return res;
+        queue.add(root);
+        int flag=0;
+        while(!queue.isEmpty()) {
+            List<Integer> ls= new ArrayList<>();
+            int num= queue.size();
+            for(int i=0;i<num;i++){
+                TreeNode node= queue.poll();
+                ls.add(node.val);
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                    queue.offer(node.right);
+            }
+            if(flag%2==1)
+                Collections.reverse(ls);
+            flag++;
+            res.add(ls);
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

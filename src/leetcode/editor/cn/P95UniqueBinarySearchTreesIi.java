@@ -35,6 +35,7 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class P95UniqueBinarySearchTreesIi{
@@ -73,7 +74,28 @@ public class P95UniqueBinarySearchTreesIi{
  */
 class Solution {
     public List<TreeNode> generateTrees(int n) {
-        throw new IllegalArgumentException("error");
+        return traverse(1, n);
+    }
+
+    public List<TreeNode> traverse(int start, int end){
+        List<TreeNode> res= new ArrayList<>();
+        if(start>end){
+            res.add(null);
+            return res;
+        }
+        for(int i=start;i<=end;i++){
+            List<TreeNode> left= traverse(start, i-1);
+            List<TreeNode> right= traverse(i+1, end);
+            for(TreeNode lefts: left){
+                for(TreeNode rights: right){
+                    TreeNode node= new TreeNode(i);
+                    node.left= lefts;
+                    node.right= rights;
+                    res.add(node);
+                }
+            }
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

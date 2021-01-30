@@ -98,7 +98,21 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-        throw new IllegalArgumentException("error");
+        if(root==null)
+            return root;
+
+        Node head= root;
+        while(head.left!=null){
+            Node pos= head;
+            while(pos!=null){
+                pos.left.next= pos.right;
+                if(pos.next!=null)
+                    pos.right.next= pos.next.left;
+                pos= pos.next;
+            }
+            head= head.left;
+        }
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

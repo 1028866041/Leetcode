@@ -85,7 +85,25 @@ public class P142LinkedListCycleIi{
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        throw new IllegalArgumentException("error");
+        ListNode slow=head,fast=head,pos=head;
+        while(slow!=null&&fast!=null){
+            if(fast.next!=null)
+                fast= fast.next.next;
+            else
+                return null;
+            slow= slow.next;
+            if(slow==fast)
+                break;
+        }
+        while(pos!=null){
+            if(slow==null)
+                return null;
+            if(pos==slow)
+                break;
+            slow= slow.next;
+            pos= pos.next;
+        }
+        return pos;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

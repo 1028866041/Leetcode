@@ -64,7 +64,21 @@ public class P80RemoveDuplicatesFromSortedArrayIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeDuplicates(int[] nums) {
-        throw new IllegalArgumentException("error");
+        int len= nums.length;
+        for(int i=0;i<len;i++){
+            int j=i+1;
+            while(j<len&&nums[j]==nums[i]){
+                if(j-i>=2) {
+                    for(int k=j;k<len-1;k++){
+                        nums[k]= nums[k+1];
+                    }
+                    len-=1;
+                    continue;
+                }
+                j++;
+            }
+        }
+        return len;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

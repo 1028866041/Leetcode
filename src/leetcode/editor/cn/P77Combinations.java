@@ -17,6 +17,7 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class P77Combinations{
@@ -27,8 +28,28 @@ public class P77Combinations{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    int k=0;
+    List<List<Integer>> ans= new ArrayList<>();
     public List<List<Integer>> combine(int n, int k) {
-        throw new IllegalArgumentException("error");
+        this.k= k;
+        int[] array= new int[n];
+        for(int i=0;i<n;i++){
+            array[i]= i+1;
+        }
+        backtrack(array, new ArrayList<>(),0);
+        return ans;
+    }
+
+    public void backtrack(int[] array, List<Integer> ls, int idx){
+        if(ls.size()==k&&!ans.contains(ls)){
+            ans.add(new ArrayList<>(ls));
+            return;
+        }
+        for(int i=idx;i<array.length;i++){
+            ls.add(array[i]);
+            backtrack(array, ls,i+1);
+            ls.remove(ls.size()-1);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

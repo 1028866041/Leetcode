@@ -71,9 +71,31 @@ public class P109ConvertSortedListToBinarySearchTree{
  * }
  */
 class Solution {
+    ListNode heads;
     public TreeNode sortedListToBST(ListNode head) {
+        int n=0;
+        ListNode pos=head;
+        heads= head;
+        while(pos!=null){
+            n++;
+            pos= pos.next;
+        }
+        return traverse(0, n-1);
+    }
 
-        throw new IllegalArgumentException("error");
+    public TreeNode traverse(int left, int right){
+        if(left>right)
+            return null;
+        int mid=(left+right+1)/2;
+        TreeNode root= new TreeNode();
+        TreeNode l= traverse(left, mid-1);
+        root.val= heads.val;
+        //树中序遍历等同于list遍历
+        heads= heads.next;
+        TreeNode r= traverse(mid+1, right);
+        root.left = l;
+        root.right = r;
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -58,8 +58,21 @@ public class P61RotateList{
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-
-        throw new IllegalArgumentException("error");
+        if(head== null)
+            return null;
+        if(head.next== null)
+            return head;
+        ListNode tail= head;
+        int n;
+        for(n= 1; tail.next != null; n++)
+            tail= tail.next;
+        tail.next= head;
+        tail = head;
+        for(int i= 0; i< n-k%n-1; i++)
+            tail= tail.next;
+        ListNode new_head = tail.next;
+        tail.next= null;
+        return new_head;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -26,6 +26,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class P113PathSumIi{
@@ -51,8 +54,20 @@ public class P113PathSumIi{
  * }
  */
 class Solution {
+    List<List<Integer>> ans= new ArrayList<>();
+    Deque<Integer> queue= new LinkedList<>();
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        throw new IllegalArgumentException("error");
+        if(root==null)
+            return ans;
+        queue.offerLast(root.val);
+        sum-=root.val;
+        if(sum==0&& root.left==null&& root.right==null){
+            ans.add(new LinkedList<>(queue));
+        }
+        pathSum(root.left, sum);
+        pathSum(root.right, sum);
+        queue.pollLast();
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

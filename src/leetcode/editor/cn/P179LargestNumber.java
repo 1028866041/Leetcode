@@ -44,6 +44,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class P179LargestNumber{
     public static void main(String[] args) {
         Solution solution = new P179LargestNumber().new Solution();
@@ -53,7 +56,21 @@ public class P179LargestNumber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String largestNumber(int[] nums) {
-        throw new IllegalArgumentException("error");
+        String[] array= new String[nums.length];
+        for(int i=0;i<nums.length;i++)
+            array[i]= Integer.toString(nums[i]);
+            Arrays.sort(array, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return (o2+o1).compareTo(o1+o2);
+            }
+        });
+        if (array[0].equals("0"))
+            return "0";
+        String ans= "";
+        for(String s:array)
+            ans+= s;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

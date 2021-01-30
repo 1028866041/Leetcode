@@ -41,7 +41,26 @@ public class P82RemoveDuplicatesFromSortedListIi{
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        throw new IllegalArgumentException("error");
+        ListNode pos,pre=new ListNode(),hair;
+        pre.next= head;
+        hair= pre;
+        pos= head;
+        while(pos!=null){
+            boolean flag= false;
+            while(pos.next!=null&& pos.val==pos.next.val){
+                pre.next= pos.next;
+                pos= pos.next;
+                flag= true;
+            }
+            if(flag){
+                pre.next= pos.next;
+                pos= pos.next;
+                continue;
+            }
+            pre= pos;
+            pos= pos.next;
+        }
+        return hair.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

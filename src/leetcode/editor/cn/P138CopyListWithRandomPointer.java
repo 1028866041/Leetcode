@@ -56,6 +56,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+
 public class P138CopyListWithRandomPointer{
     public static void main(String[] args) {
         Solution solution = new P138CopyListWithRandomPointer().new Solution();
@@ -91,7 +93,21 @@ class Node {
 
 class Solution {
     public Node copyRandomList(Node head) {
-        throw new IllegalArgumentException("error");
+        HashMap<Node,Node> map= new HashMap();
+        if(head==null)
+            return null;
+        Node pos=head;
+        while(pos!=null){
+            map.put(pos, new Node(pos.val));
+            pos= pos.next;
+        }
+        pos=head;
+        while(pos!=null){
+            map.get(pos).next= map.get(pos.next);
+            map.get(pos).random= map.get(pos.random);
+            pos= pos.next;
+        }
+        return map.get(head);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

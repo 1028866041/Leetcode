@@ -28,6 +28,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class P114FlattenBinaryTreeToLinkedList{
     public static void main(String[] args) {
         Solution solution = new P114FlattenBinaryTreeToLinkedList().new Solution();
@@ -64,7 +67,21 @@ public class P114FlattenBinaryTreeToLinkedList{
  */
 class Solution {
     public void flatten(TreeNode root) {
-        throw new IllegalArgumentException("error");
+        List<TreeNode> ls= new ArrayList<>();
+        backtrack(root, ls);
+        for(int i=1;i<ls.size();i++){
+            TreeNode pre=ls.get(i-1),cur=ls.get(i);
+            pre.left= null;
+            pre.right= cur;
+        }
+    }
+
+    public void backtrack(TreeNode root, List<TreeNode> ls){
+        if(root==null)
+            return;
+        ls.add(root);
+        backtrack(root.left, ls);
+        backtrack(root.right, ls);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

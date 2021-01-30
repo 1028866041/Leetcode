@@ -27,7 +27,10 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class P102BinaryTreeLevelOrderTraversal{
     public static void main(String[] args) {
@@ -53,7 +56,25 @@ public class P102BinaryTreeLevelOrderTraversal{
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        throw new IllegalArgumentException("error");
+        Queue<TreeNode> queue= new LinkedList<>();
+        List<List<Integer>> res= new ArrayList<>();
+        if(root==null)
+            return res;
+        queue.add(root);
+        while(!queue.isEmpty()){
+            List<Integer> ls= new ArrayList<>();
+            int num= queue.size();
+            for(int i=0;i<num;i++){
+                TreeNode node= queue.poll();
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                    queue.offer(node.right);
+                ls.add(node.val);
+            }
+            res.add(ls);
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -19,6 +19,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class P90SubsetsIi{
@@ -30,7 +32,20 @@ public class P90SubsetsIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        throw new IllegalArgumentException("error");
+        List<List<Integer>> ans= new ArrayList<>();
+        Arrays.sort(nums);
+        traverse(ans, nums, new ArrayList<>(), 0);
+        return ans;
+    }
+    public void traverse(List<List<Integer>> ans, int[] nums, List<Integer> ls, int idx){
+        ans.add(new ArrayList<Integer>(ls));
+        for(int i=idx;i<nums.length;i++){
+            if(i>idx&&nums[i]==nums[i-1])
+                continue;
+            ls.add(nums[i]);
+            traverse(ans, nums, ls, i+1);
+            ls.remove(ls.size()-1);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
