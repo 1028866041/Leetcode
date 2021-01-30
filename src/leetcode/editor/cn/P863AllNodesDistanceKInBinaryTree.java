@@ -36,10 +36,7 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class P863AllNodesDistanceKInBinaryTree{
     public static void main(String[] args) {
@@ -64,48 +61,52 @@ public class P863AllNodesDistanceKInBinaryTree{
  * }
  */
 class Solution {
-    List<Integer> res= null;
+    Map<TreeNode, TreeNode> map= new HashMap<>();
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
-        res= new ArrayList<>();
-        traverse(root, target, K);
-        return res;
+        Queue<TreeNode> queue= new LinkedList<>();
+        Set<TreeNode> set= new HashSet<>();
+        traverse(root, null);
+        queue.add(null);
+        queue.add(target);
+        set.add(target);
+        set.add(null);
+
+        int dist=0;
+        while(!queue.isEmpty()){
+            TreeNode node= queue.poll();
+            if(node!=null){
+                if(!set.contains(node.left)){
+                    set.add(node.left);
+                    queue.offer(node.left);
+                }
+                if(!set.contains(node. right)){
+                    set.add(node.right);
+                    queue.offer(node.right);
+                }
+                if(!set.contains(map.get(node))){
+                    set.add(map.get(node));
+                    queue.offer(map.get(node));
+                }
+            }else{
+                if(dist==K){
+                    List<Integer> res= new ArrayList<>();
+                    for(TreeNode nodes:queue)
+                        res.add(nodes.val);
+                    return res;
+                }
+                queue.offer(null);
+                dist++;
+            }
+        }
+        return new ArrayList<>();
     }
 
-    public int traverse(TreeNode root, TreeNode target, int K){
-        /*if(root==null)
-            return -1;
-        if(root==target){
-            traverse2(root, 0);
-            return 1;
-        }
-        int l= traverse(root.left, target,K-1);
-        int r= traverse(root.right, target,K-1);
-        if(l!=-1){
-            if(l==K)
-                res.add(root.val);
-            traverse2(root.right, K-l);
-            return l+1;
-        }else if(r!=-1){
-            if(r==K)
-                res.add(root.val);
-            traverse2(root.left, K-r);
-            return r+1;
-        }else{
-            return -1;
-        }
-        */
-        throw new IllegalArgumentException("error");
-    }
-
-    public void traverse2(TreeNode root, int idx){
+    public void traverse(TreeNode root, TreeNode par){
         if(root==null)
             return;
-        if(idx==0){
-            res.add(root.val);
-            return;
-        }
-        traverse2(root.left, idx-1);
-        traverse2(root.right, idx-1);
+        map.put(root, par);
+        traverse(root.left, root);
+        traverse(root.right, root);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
