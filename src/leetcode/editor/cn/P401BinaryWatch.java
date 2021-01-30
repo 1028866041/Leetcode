@@ -29,20 +29,35 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 //Java：二进制手表
 public class P401BinaryWatch{
     public static void main(String[] args) {
         Solution solution = new P401BinaryWatch().new Solution();
-        // TO TESTSystem.out.println(solution);
-
+        // TO TEST
+        System.out.println(solution.readBinaryWatch(2));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    List<String> res= new ArrayList<>();
+    int[] nums=new int[]{1,2,4,8,1,2,4,8,16,32};
     public List<String> readBinaryWatch(int num) {
+        traverse(num,0,0,0);
+        return res;
+    }
 
-        throw new IllegalArgumentException("error");
+    public void traverse(int n, int h, int m, int idx){
+        if(n==0)
+            res.add(h+":"+(m>9?m:"0"+m));
+        for(int i=idx;i<10&&n>0;i++){
+            if(i<4&&h+nums[i]<12)
+                traverse(n-1,h+nums[i], m,i+1);
+            if(i>=4&&m+nums[i]<60)
+                traverse(n-1,h, m+nums[i],i+1);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

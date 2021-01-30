@@ -63,6 +63,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.Stack;
+
 public class P150EvaluateReversePolishNotation{
     public static void main(String[] args) {
         Solution solution = new P150EvaluateReversePolishNotation().new Solution();
@@ -72,7 +74,31 @@ public class P150EvaluateReversePolishNotation{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int evalRPN(String[] tokens) {
-        throw new IllegalArgumentException("error");
+        if(tokens.length==0){
+            return 0;
+        }
+        int res= 0;
+        Stack<Integer> stack= new Stack<>();
+        for(int i=0;i<tokens.length;i++){
+            if(tokens[i].equals("+")){
+                res= stack.pop()+stack.pop();
+                stack.push(res);
+            }else if(tokens[i].equals("-")){
+                int num= stack.pop();
+                res= stack.pop()-num;
+                stack.push(res);
+            }else if(tokens[i].equals("*")){
+                res= stack.pop()*stack.pop();
+                stack.push(res);
+            }else if(tokens[i].equals("/")){
+                int num= stack.pop();
+                res= stack.pop()/num;
+                stack.push(res);
+            }else{
+                stack.push(Integer.parseInt(tokens[i]));
+            }
+        }
+        return stack.pop();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

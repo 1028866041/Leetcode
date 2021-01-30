@@ -35,6 +35,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class P40CombinationSumIi{
@@ -52,8 +53,27 @@ public class P40CombinationSumIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res= new ArrayList<List<Integer>>();
+        Arrays.sort(candidates);
+        backtrack(res, candidates, target, new ArrayList<Integer>(), 0);
+        return res;
+    }
 
-        throw new IllegalArgumentException("error");
+    public void backtrack( List<List<Integer>> res, int[] cand, int target, List<Integer> ls, int idx){
+        if(target==0){
+            res.add(new ArrayList<>(ls));
+            return;
+        }
+        for(int i=idx;i< cand.length;i++){
+            if(target-cand[i]<0)
+                break;
+            if(i>idx&& cand[i]==cand[i-1])
+                continue;
+
+            ls.add(cand[i]);
+            backtrack(res, cand, target-cand[i], ls, i+1);
+            ls.remove(ls.size()-1);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

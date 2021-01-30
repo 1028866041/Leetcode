@@ -80,7 +80,16 @@ public class P165CompareVersionNumbers{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int compareVersion(String version1, String version2) {
-        throw new IllegalArgumentException("error");
+        String[] str1= version1.split("\\.");
+        String[] str2= version2.split("\\.");
+
+        for(int i=0;i<Math.max(str1.length,str2.length);i++){
+            int i1= i<str1.length?Integer.parseInt(str1[i]):0;
+            int i2= i<str2.length?Integer.parseInt(str2[i]):0;
+            if(i1!= i2)
+                return i1>i2?1:-1;
+        }
+        return 0;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

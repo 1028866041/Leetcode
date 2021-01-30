@@ -54,7 +54,24 @@ public class P147InsertionSortList{
  */
 class Solution {
     public ListNode insertionSortList(ListNode head) {
-        throw new IllegalArgumentException("error");
+        if(head==null)
+            return head;
+        ListNode hair= new ListNode(0);
+        hair.next= head;
+        ListNode pos=head.next,last=head;
+        while(pos!=null){
+            if(last.val>pos.val){
+                ListNode pre= hair;
+                while(pre.next.val<=pos.val)
+                    pre= pre.next;
+                last.next= pos.next;
+                pos.next= pre.next;
+                pre.next= pos;
+            }else
+                last= last.next;
+            pos= last.next;
+        }
+        return hair.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

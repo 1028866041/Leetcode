@@ -64,7 +64,21 @@ public class TreeNode {
 }
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        throw new IllegalArgumentException("error");
+        return traverse(root, null, null);
+    }
+
+    public boolean traverse(TreeNode root, Integer low, Integer up){
+        if(root== null)
+            return true;
+
+        if(low!=null&& low>=root.val)
+            return false;
+        if(up!=null&& up<=root.val)
+            return false;
+        if(!traverse(root.left, low, root.val)||!traverse(root.right, root.val, up)){
+            return false;
+        }
+        return true;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

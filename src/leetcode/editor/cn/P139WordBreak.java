@@ -43,7 +43,23 @@ public class P139WordBreak{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
-        throw new IllegalArgumentException("error");
+        return backtrack(s, wordDict, 0, new boolean[s.length()]);
+    }
+
+    public boolean backtrack(String s, List<String> wordDict, int idx, boolean[] visited) {
+        if(s.length()==0)
+            return true;
+        if(visited[idx])
+            return false;
+        visited[idx]= true;
+        for(int i=0;i<s.length();i++){
+            if(wordDict.contains(s.substring(0,i+1))){
+                if(backtrack(s.substring(i+1), wordDict,idx+i+1, visited)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

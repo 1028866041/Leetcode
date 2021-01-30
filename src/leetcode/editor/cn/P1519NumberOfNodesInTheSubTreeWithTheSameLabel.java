@@ -79,6 +79,7 @@ public class P1519NumberOfNodesInTheSubTreeWithTheSameLabel{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] countSubTrees(int n, int[][] edges, String labels) {
+
         throw new IllegalArgumentException("error");
     }
 }
