@@ -48,22 +48,18 @@ public class P402RemoveKDigits{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String removeKdigits(String num, int k) {
-        Deque<Character> deque= new LinkedList<>();
-
-        for(int i=0;i<num.length();i++){
-            while(!deque.isEmpty()&&k>0&&deque.peekLast()>num.charAt(i)){
-                deque.pollLast();
-                k--;
-            }
-            deque.offerLast(num.charAt(i));
-        }
+        if(num.length()<=k)
+            return "0";
+        StringBuilder str= new StringBuilder(num);
         for(int i=0;i<k;i++){
-            deque.pollLast();
+            int idx=0;
+            for(int j=1;j< str.length()&& str.charAt(j)>=str.charAt(j-1);j++)
+                idx= j;
+            str.deleteCharAt(idx);
+            while(str.length()>1&& str.charAt(0)=='0')
+                str.deleteCharAt(0);
         }
-        StringBuilder build=  new StringBuilder();
-        boolean flag= false;
-
-        throw new IllegalArgumentException("error");
+        return str.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

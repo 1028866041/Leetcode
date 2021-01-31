@@ -57,8 +57,21 @@ public class P1513NumberOfSubstringsWithOnly1s{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numSub(String s) {
-
-        throw new IllegalArgumentException("error");
+        long res= 0;
+        long num= 0;
+        for(int i=0;i<s.length();i++){
+            char c= s.charAt(i);
+            if(c=='0'){
+                res+= num*(num+1)/2;
+                res%= 1000000007;
+                num= 0;
+            }else{
+                num++;
+            }
+        }
+        res+= num*(num+1)/2;
+        res%= 1000000007;
+        return (int)res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

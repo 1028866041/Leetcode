@@ -37,18 +37,26 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class P89GrayCode{
     public static void main(String[] args) {
         Solution solution = new P89GrayCode().new Solution();
         // TO TEST
-        System.out.println(solution);
+        System.out.println(solution.grayCode(2));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<Integer> grayCode(int n) {
-        throw new IllegalArgumentException("error");
+        List<Integer> res= new ArrayList<Integer>(){{add(0);}};
+        int head= 1;
+        for(int i=0;i<n;i++){
+            for(int j=res.size()-1;j>=0;j--)
+                res.add(head+res.get(j));
+            head=head<<1;
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
