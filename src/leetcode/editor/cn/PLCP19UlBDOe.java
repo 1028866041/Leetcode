@@ -27,16 +27,23 @@ public class PLCP19UlBDOe{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new PLCP19UlBDOe().new Solution();
-        System.out.println(solution.minimumOperations("yry"));
+        System.out.println(solution.minimumOperations("rrryyyrryyyrr"));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minimumOperations(String leaves) {
+        int[][] dp= new int[leaves.length()][3];
 
-
-
-
-        throw new IllegalArgumentException("error");
+        dp[0][0]= leaves.charAt(0)== 'y'?1:0;
+        dp[0][1]=dp[0][2]=dp[1][2]= Integer.MAX_VALUE;
+        for(int i=1;i<leaves.length();i++){
+            int flag= leaves.charAt(i)=='y'?1:0;
+            dp[i][0]= dp[i-1][0]+ flag;
+            dp[i][1]= Math.min(dp[i-1][0], dp[i-1][1])+(flag==1?0:1);
+            if(i>=2)
+                dp[i][2]= Math.min(dp[i-1][1],dp[i-1][2])+ flag;
+        }
+        return dp[leaves.length()-1][2];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

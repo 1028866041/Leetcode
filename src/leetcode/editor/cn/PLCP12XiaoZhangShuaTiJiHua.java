@@ -43,14 +43,38 @@ public class PLCP12XiaoZhangShuaTiJiHua{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new PLCP12XiaoZhangShuaTiJiHua().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.minTime(new int[]{999,999,999}, 4));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minTime(int[] time, int m) {
+        if(time.length<m)
+            return 0;
+        int l=0,r= Integer.MAX_VALUE;
+        while(l<r){
+            int mid=(l+r)/2;
+            if(valid(time, m, mid)){
+                r= mid;
+            }else {
+                l= mid+1;
+            }
+        }
+        return r;
+    }
 
-
-        throw new IllegalArgumentException("error");
+    boolean valid(int[] time, int m, int split){
+        int i=0,sum=0,max=0;
+        for(int t:time){
+            sum+= t;
+            max= Math.max(max, t);
+            if(sum-max>split){
+                if(++i==m)
+                    return false;
+                sum= t;
+                max= t;
+            }
+        }
+        return true;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

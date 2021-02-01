@@ -66,6 +66,7 @@ public class P1594MaximumNonNegativeProductInAMatrix{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxProductPath(int[][] grid) {
+
         throw new IllegalArgumentException("error");
     }
 }
