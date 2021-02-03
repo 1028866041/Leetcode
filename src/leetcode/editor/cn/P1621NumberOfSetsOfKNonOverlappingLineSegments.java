@@ -61,13 +61,23 @@ public class P1621NumberOfSetsOfKNonOverlappingLineSegments{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1621NumberOfSetsOfKNonOverlappingLineSegments().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.numberOfSets(5,3));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numberOfSets(int n, int k) {
+        long[][] dp= new long[1010][1010];
 
-        throw new IllegalArgumentException("error");
+        for(int i=0;i<1010;i++)
+            dp[i][0]= 1;
+        for(int i=2;i<=n;i++){
+            for(int j=1;j<=Math.min(k,i-1);j++){
+                dp[i][j]= 2*dp[i-1][j]+dp[i-1][j-1]-dp[i-2][j];
+                dp[i][j]+= 1000000007;
+                dp[i][j]%= 1000000007;
+            }
+        }
+        return (int)dp[n][k];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

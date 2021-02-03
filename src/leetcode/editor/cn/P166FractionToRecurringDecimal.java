@@ -65,7 +65,9 @@ public class P166FractionToRecurringDecimal{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
-        throw new IllegalArgumentException("error");
+
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
