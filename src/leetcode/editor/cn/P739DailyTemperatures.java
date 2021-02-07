@@ -10,16 +10,30 @@
 
 package leetcode.editor.cn;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class P739DailyTemperatures{
     public static void main(String[] args) {
         Solution solution = new P739DailyTemperatures().new Solution();
         // TO TEST
-        System.out.println(solution);
+        System.out.println(solution.dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73}));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] dailyTemperatures(int[] T) {
-        throw new IllegalArgumentException("error");
+    public int[] dailyTemperatures(int[] T){
+        int[] res= new int[T.length];
+        Deque<Integer> stack= new LinkedList<>();
+
+        for(int i=0;i<T.length;i++){
+            int t= T[i];
+            while(!stack.isEmpty()&&t>T[stack.peek()]){
+                int pre= stack.pop();
+                res[pre]= i- pre;
+            }
+            stack.push(i);
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
