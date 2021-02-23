@@ -21,8 +21,10 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class P341FlattenNestedListIterator{
     public static void main(String[] args) {
@@ -53,19 +55,31 @@ public class P341FlattenNestedListIterator{
  * }
  */
 public class NestedIterator implements Iterator<Integer> {
-
+    List<Integer> list= new ArrayList<>();
+    ListIterator<Integer> iterator;
     public NestedIterator(List<NestedInteger> nestedList) {
-        throw new IllegalArgumentException("error");
+        traverse(nestedList);
+        iterator= list.listIterator();
     }
 
     @Override
     public Integer next() {
-        throw new IllegalArgumentException("error");
+        return iterator.next();
     }
 
     @Override
     public boolean hasNext() {
-        throw new IllegalArgumentException("error");
+        return iterator.hasNext();
+    }
+
+    public void traverse(List<NestedInteger> nestedList){
+        for(NestedInteger ns: nestedList){
+            if(ns.isInteger()){
+                list.add(ns.getInteger());
+            }else{
+                traverse(ns.getList());
+            }
+        }
     }
 }
 

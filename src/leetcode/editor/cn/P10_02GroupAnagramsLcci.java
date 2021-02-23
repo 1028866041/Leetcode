@@ -35,9 +35,6 @@ public class P10_02GroupAnagramsLcci{
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
 
-
-
-
         throw new IllegalArgumentException("error");
     }
 }

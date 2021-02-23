@@ -55,7 +55,7 @@ package leetcode.editor.cn;
 public class P621TaskScheduler{
     public static void main(String[] args) {
         Solution solution = new P621TaskScheduler().new Solution();
-        // TO TEST
+        // TO TESTt'h'r
         System.out.println(solution);
     }
     //leetcode submit region begin(Prohibit modification and deletion)

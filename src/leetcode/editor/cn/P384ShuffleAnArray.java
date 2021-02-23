@@ -41,6 +41,11 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public class P384ShuffleAnArray{
     public static void main(String[] args) {
         Solution solution = new P384ShuffleAnArray().new Solution(new int[]{});
@@ -49,19 +54,28 @@ public class P384ShuffleAnArray{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
+    int[] original;
     public Solution(int[] nums) {
-
+        original= new int[nums.length];
+        for(int i=0;i<nums.length;i++)
+            original[i]= nums[i];
     }
-    
+
     /** Resets the array to its original configuration and return it. */
     public int[] reset() {
-        throw new IllegalArgumentException("error");
+        return original;
     }
     
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
-        throw new IllegalArgumentException("error");
+        int[] target= new int[original.length];
+        List<Integer> list= new ArrayList<>();
+        for(int i:original)
+            list.add(i);
+        Collections.shuffle(list);
+        for(int i=0;i<target.length;i++)
+            target[i]= list.get(i);
+        return target;
     }
 }
 

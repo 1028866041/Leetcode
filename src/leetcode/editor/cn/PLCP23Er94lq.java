@@ -36,23 +36,44 @@
 //- 题目保证 `target` 是 `1~N` 的一个排列。 👍 8 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.Arrays;
+
 public class PLCP23Er94lq{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new PLCP23Er94lq().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.isMagic(new int[]{5,4,3,2,1}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isMagic(int[] target) {
-        int[] sum=  new int[target.length];
+        int[] card= new int[target.length];
+        for(int i=0;i<card.length;i++)
+            card[i]= i+1;
+        return traverse(card, target,0,-1);
+    }
 
-        for(int i=0;i<sum.length;i++){
-
+    public boolean traverse(int[] card, int[] target, int idx, int k){
+        if(idx>=card.length)
+            return true;
+        int[] temp= Arrays.copyOf(card, card.length);
+        int insert= idx;
+        for(int j=idx+1;j<card.length;j+=2)
+            card[insert++]=  temp[j];
+        for(int j=idx;j<card.length;j+=2)
+            card[insert++]=  temp[j];
+        int cur= 0;
+        for(int i=idx;i<card.length;i++){
+            if(target[i]!=card[i])
+                break;
+            cur++;
         }
-
-        throw new IllegalArgumentException("error");
+        if(k==-1)
+            k= cur;
+        if(cur==0|| idx+cur<card.length&&cur<k)
+            return false;
+        return traverse(card, target, idx+k, k);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
