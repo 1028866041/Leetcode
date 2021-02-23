@@ -56,6 +56,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+
 public class P166FractionToRecurringDecimal{
     public static void main(String[] args) {
         Solution solution = new P166FractionToRecurringDecimal().new Solution();
@@ -65,8 +67,42 @@ public class P166FractionToRecurringDecimal{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
-
-        throw new IllegalArgumentException("error");
+        long num= numerator;
+        long den= denominator;
+        String sign= "";
+        if (num> 0 && den< 0 || num< 0 && den> 0) {
+            sign= "-";
+        }
+        num= Math.abs(num);
+        den= Math.abs(den);
+        long integer= num/ den;
+        num= num - integer * den;
+        HashMap<Long, Integer> map= new HashMap<>();
+        int index= 0;
+        String decimal= "";
+        int repeatIndex= -1;
+        while(num!= 0){
+            num*= 10;
+            if(map.containsKey(num)){
+                repeatIndex= map.get(num);
+                break;
+            }
+            map.put(num, index);
+            long decimalPlace= num/ den;
+            decimal= decimal + decimalPlace;
+            num-= decimalPlace * den;
+            index++;
+        }
+        if (repeatIndex!= -1) {
+            String dec= decimal;
+            return sign+integer+"."+dec.substring(0, repeatIndex)+"("+dec.substring(repeatIndex) + ")";
+        } else {
+            if (decimal== "") {
+                return sign+ integer;
+            } else {
+                return sign+ integer+ "." + decimal;
+            }
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

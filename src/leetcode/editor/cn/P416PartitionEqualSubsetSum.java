@@ -37,13 +37,32 @@ public class P416PartitionEqualSubsetSum{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P416PartitionEqualSubsetSum().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.canPartition(new int[]{1, 5, 11, 5}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean canPartition(int[] nums) {
-
-        throw new IllegalArgumentException("error");
+        int n= nums.length;
+        if(n<2)
+            return false;
+        int sum=0,max=0;
+        for(int num:nums){
+            sum+= num;
+            max= Math.max(max, num);
+        }
+        if(sum%2!=0)
+            return false;
+        int target= sum/2;
+        if(max>target)
+            return false;
+        boolean[] dp= new boolean[target+1];
+        dp[0]= true;
+        for(int i=0;i<n;i++){
+            int num= nums[i];
+            for(int j=target;j>=num;j--)
+                dp[j]|= dp[j-num];
+        }
+        return dp[target];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

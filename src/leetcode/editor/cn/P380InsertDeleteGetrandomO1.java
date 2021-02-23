@@ -38,6 +38,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.*;
+
 public class P380InsertDeleteGetrandomO1{
     public static void main(String[] args) {
         //Solution solution = new P380InsertDeleteGetrandomO1().new Solution();
@@ -45,25 +47,41 @@ public class P380InsertDeleteGetrandomO1{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class RandomizedSet {
-
+    Map<Integer,Integer> dict;
+    List<Integer> list;
+    Random rand= new Random();
     /** Initialize your data structure here. */
     public RandomizedSet() {
-
+        dict= new HashMap<>();
+        list= new ArrayList<>();
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        throw new IllegalArgumentException("error");
+        if(dict.containsKey(val))
+            return false;
+        dict.put(val, list.size());
+        list.add(list.size(),val);
+        return true;
     }
     
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
-        throw new IllegalArgumentException("error");
+        if(!dict.containsKey(val))
+            return false;
+
+        int last= list.get(list.size()-1);
+        int idx= dict.get(val);
+        list.set(idx,last);
+        dict.put(last, idx);
+        list.remove(list.size()-1);
+        dict.remove(val);
+        return true;
     }
     
     /** Get a random element from the set. */
     public int getRandom() {
-        throw new IllegalArgumentException("error");
+        return list.get(rand.nextInt(list.size()));
     }
 }
 

@@ -68,14 +68,33 @@ public class P1504CountSubmatricesWithAllOnes{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1504CountSubmatricesWithAllOnes().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.numSubmat(new int[][]{{1,1,1,1,1,1}}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numSubmat(int[][] mat) {
-
-
-        throw new IllegalArgumentException("error");
+        int[][] row= new int[mat.length][mat[0].length];
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
+                if(j==0){
+                    row[i][j]= mat[i][j];
+                }else if(mat[i][j]!=0){
+                    row[i][j]= row[i][j-1]+1;
+                }else
+                    row[i][j]= 0;
+            }
+        }
+        int ans=0;
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
+                int col= row[i][j];
+                for(int k=i;k>=0&&col!=0;k--){
+                    col= Math.min(col,row[k][j]);
+                    ans+= col;
+                }
+            }
+        }
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -21,6 +21,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class P106ConstructBinaryTreeFromInorderAndPostorderTraversal{
     public static void main(String[] args) {
         Solution solution = new P106ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();
@@ -44,8 +47,32 @@ public class P106ConstructBinaryTreeFromInorderAndPostorderTraversal{
  * }
  */
 class Solution {
+    int idx;
+    int[] postorder;
+    int[] inorder;
+    Map<Integer,Integer> map= new HashMap<>();
+
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        throw new IllegalArgumentException("error");
+        this.postorder= postorder;
+        this.inorder= inorder;
+        idx= postorder.length-1;
+        int idx=0;
+        for(Integer val:inorder){
+            map.put(val, idx++);
+        }
+        return traverse(0, inorder.length-1);
+    }
+
+    public TreeNode traverse(int left, int right){
+        if(left>right)
+            return null;
+        int val= postorder[idx];
+        TreeNode root= new TreeNode(val);
+        int index= map.get(val);
+        idx--;
+        root.right= traverse(index+1,right);
+        root.left= traverse(left, index-1);
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

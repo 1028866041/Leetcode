@@ -61,13 +61,36 @@ public class P1594MaximumNonNegativeProductInAMatrix{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1594MaximumNonNegativeProductInAMatrix().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.maxProductPath(new int[][]{{1, 3},{0,-4}}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maxProductPath(int[][] grid) {
+    public int maxProductPath(int[][] grid){
+        int mod= 1000000000+7;
+        int m= grid.length,n=grid[0].length;
+        long[][] max= new long[m][n];
+        long[][] min= new long[m][n];
 
-        throw new IllegalArgumentException("error");
+        max[0][0]= min[0][0]= grid[0][0];
+        for(int i=1;i<m;i++)
+            max[i][0]= min[i][0]= max[i-1][0]*grid[i][0];
+        for(int i=1;i<n;i++)
+            max[0][i]= min[0][i]= max[0][i-1]*grid[0][i];
+
+        for(int i=1;i<m;i++)
+            for(int j=1;j<n;j++)
+                if(grid[i][j]>=0){
+                    max[i][j]= Math.max(max[i][j-1], max[i-1][j])*grid[i][j];
+                    min[i][j]= Math.min(min[i][j-1], min[i-1][j])*grid[i][j];
+                }else{
+                    max[i][j]= Math.min(min[i][j-1], min[i-1][j])*grid[i][j];
+                    min[i][j]= Math.max(max[i][j-1], max[i-1][j])*grid[i][j];
+                }
+        if(max[m-1][n-1]<0){
+            return -1;
+        }else{
+            return (int)(max[m-1][n-1]%mod);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -66,12 +66,26 @@ public class P91DecodeWays{
     public static void main(String[] args) {
         Solution solution = new P91DecodeWays().new Solution();
         // TO TEST
-        System.out.println(solution);
+        System.out.println(solution.numDecodings("226"));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numDecodings(String s) {
-        throw new IllegalArgumentException("error");
+        if(s.charAt(0)=='0')
+            return 0;
+        int pre=1,curr=1;
+        for(int i=1;i<s.length();i++){
+            int c=curr;
+            if(s.charAt(i)=='0')
+                if(s.charAt(i-1)=='1'||s.charAt(i-1)=='2')
+                    curr= pre;
+                else
+                    return 0;
+            else if(s.charAt(i-1)=='1'||(s.charAt(i-1)=='2'&&s.charAt(i)>='1'&&s.charAt(i)<='6'))
+                curr+= pre;
+            pre=c;
+        }
+        return curr;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

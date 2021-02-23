@@ -25,14 +25,24 @@ public class P66GouJianChengJiShuZuLcof{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P66GouJianChengJiShuZuLcof().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.constructArr(new int[]{1,2,3,4,5})[0]);
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] constructArr(int[] a) {
+        if(a.length==0)
+            return new int[]{};
+        int[] b= new int[a.length];
+        b[0]= 1;
+        int c= 1;
 
-
-        throw new IllegalArgumentException("error");
+        for(int i=1;i<a.length;i++)
+            b[i]= b[i-1]*a[i-1];
+        for(int i=a.length-2;i>=0;i--){
+            c*= a[i+1];
+            b[i]*= c;
+        }
+        return b;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

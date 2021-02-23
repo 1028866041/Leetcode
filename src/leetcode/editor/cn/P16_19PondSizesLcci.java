@@ -21,6 +21,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class P16_19PondSizesLcci{
@@ -28,47 +29,39 @@ public class P16_19PondSizesLcci{
         // TO TEST
         Solution solution = new P16_19PondSizesLcci().new Solution();
         System.out.println(
-                solution.pondSizes(new int[][]{{0,2,1,0},{0,1,0,1},{1,1,0,1},{0,1,0,1}}));
+            solution.pondSizes(new int[][]{{0,2,1,0},{0,1,0,1},{1,1,0,1},{0,1,0,1}}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] pondSizes(int[][] land) {
         List<Integer> s= new ArrayList<>();
-        boolean[][] visited= new boolean[land.length][land[0].length];
 
         for(int i=0;i<land.length;i++){
             for(int j=0;j<land[0].length;j++){
-                int sum=traverse(land, i,j, visited);
-                if(sum>0){
+                int sum= traverse(land, i,j);
+                if(sum>0)
                     s.add(sum);
-                }
             }
         }
         int[] arry= new int[s.size()];
-        for(int i=0;i<s.size();i++){
+        for(int i=0;i<s.size();i++)
             arry[i]= s.get(i);
-            System.out.print(arry[i]+" ");
-        }
-        throw new IllegalArgumentException("error");
-        //return arry;
+        Arrays.sort(arry);
+        return arry;
     }
 
-    public int traverse(int[][] land, int i, int j, boolean visited[][]){
-        if(land[i][i]!=0){
+    public int traverse(int[][] land, int i, int j){
+        if(i< 0|| i>= land.length|| j< 0|| j>=land[0].length||land[i][j]!=0)
             return 0;
-        }
+        int num= 1;
         int[][] direction={{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
-        int flag= 1;
-        visited[i][j]= true;
+        land[i][j] = -1;
         for(int k=0;k<direction.length;k++){
             int si= i+direction[k][0];
             int sj= j+direction[k][1];
-            if(valid(land,i,j)&& !visited[i][j]){
-                flag+= traverse(land, si, sj, visited);
-            }
+                num+= traverse(land, si, sj);
         }
-        visited[i][j]= false;
-        return flag;
+        return num;
     }
 
     public boolean valid(int[][] land, int i,int j){

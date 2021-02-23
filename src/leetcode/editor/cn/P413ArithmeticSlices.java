@@ -40,13 +40,24 @@ public class P413ArithmeticSlices{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P413ArithmeticSlices().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.numberOfArithmeticSlices(new int[]{1,2,3,8,9,10}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numberOfArithmeticSlices(int[] A) {
-
-        throw new IllegalArgumentException("error");
+        int count= 0;
+        for(int i=0;i<A.length-2;i++){
+            int d= A[i+1]- A[i];
+            for(int j=i+2;j<A.length;j++){
+                int k=0;
+                for(k=i+1;k<=j;k++)
+                    if(A[k]-A[k-1]!=d)
+                        break;
+                if(k>j)
+                    count++;
+            }
+        }
+        return count;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

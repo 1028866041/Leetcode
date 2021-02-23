@@ -43,27 +43,29 @@
 // 👍 183 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.Arrays;
+
 public class P475Heaters{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P475Heaters().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.findRadius(new int[]{1,2,3},new int[]{2}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int findRadius(int[] houses, int[] heaters) {
-
-
-        for(int i=1;i<houses.length;i++){
-
-
+        int res=0;
+        int i=0;
+        Arrays.sort(houses);
+        Arrays.sort(heaters);
+        for(int house:houses){
+            while(i<heaters.length-1&&
+                Math.abs(heaters[i]-house)>=Math.abs(heaters[i+1]-house))
+                i++;
+            res= Math.max(res, Math.abs(heaters[i]-house));
         }
-
-
-
-
-        throw new IllegalArgumentException("error");
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

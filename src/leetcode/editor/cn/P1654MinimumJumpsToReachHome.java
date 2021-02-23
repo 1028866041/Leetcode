@@ -54,19 +54,44 @@
 // 👍 14 👎 0
 
 package leetcode.editor.cn;
- 
+
+import org.omg.CORBA.INTERNAL;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+
 public class P1654MinimumJumpsToReachHome{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1654MinimumJumpsToReachHome().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.minimumJumps(new int[]{14,4,18,1,15},3,15,9));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minimumJumps(int[] forbidden, int a, int b, int x) {
+        Set<Integer> set= new HashSet<>(forbidden.length);
 
+        for(int i=0;i<forbidden.length;i++)
+            set.add(forbidden[i]);
+        Set<Integer> visit= new HashSet<>();
+        Queue<int[]> queue= new LinkedList<>();
+        queue.offer(new int[]{0,1,0});
+        while(!queue.isEmpty()){
+            int[] node= queue.poll();
+            if(node[0]==x)
+                return node[2];
+            if(visit.contains(node[0]))
+                continue;
+            visit.add(node[0]);
+            if(node[1]==1&&node[0]-b>0&&!set.contains(node[0]-b))
+                queue.offer(new int[]{node[0]-b,-1,node[2]+1});
 
-        throw new IllegalArgumentException("error");
+            if(!set.contains(node[0]+a)&&node[0]+a<6000)
+                queue.offer(new int[]{node[0]+a,1,node[2]+1});
+        }
+        return -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

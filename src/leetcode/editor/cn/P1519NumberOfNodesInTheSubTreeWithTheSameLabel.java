@@ -69,7 +69,12 @@
 // 👍 42 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class P1519NumberOfNodesInTheSubTreeWithTheSameLabel{
     public static void main(String[] args) {
         // TO TEST
@@ -79,8 +84,37 @@ public class P1519NumberOfNodesInTheSubTreeWithTheSameLabel{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] countSubTrees(int n, int[][] edges, String labels) {
+        Map<Integer, List<Integer>> edgesMap = new HashMap<Integer, List<Integer>>();
+        for (int[] edge : edges) {
+            int node = edge[0], node2 = edge[1];
+            List<Integer> list = edgesMap.getOrDefault(node, new ArrayList<Integer>());
+            List<Integer> list2 = edgesMap.getOrDefault(node2, new ArrayList<Integer>());
+            list.add(node2);
+            list2.add(node);
+            edgesMap.put(node, list);
+            edgesMap.put(node2, list2);
+        }
+        int[] counts = new int[n];
+        boolean[] visited = new boolean[n];
+        traverse(0, counts, visited, edgesMap, labels);
+        return counts;
+    }
 
-        throw new IllegalArgumentException("error");
+    public int[] traverse(int node,int[] count, boolean[] visited, Map<Integer,List<Integer>> map,String labels){
+        visited[node] = true;
+        int[] curCounts = new int[26];
+        curCounts[labels.charAt(node)-'a']++;
+        List<Integer> nodesList = map.get(node);
+        for(int nextNode : nodesList) {
+            if(!visited[nextNode]) {
+                int[] childCounts= traverse(nextNode, count, visited, map, labels);
+                for(int i= 0; i< 26; i++) {
+                    curCounts[i]+= childCounts[i];
+                }
+            }
+        }
+        count[node]= curCounts[labels.charAt(node) - 'a'];
+        return curCounts;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

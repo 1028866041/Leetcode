@@ -42,20 +42,46 @@
 // 👍 30 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class P1626BestTeamWithNoConflicts{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1626BestTeamWithNoConflicts().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.bestTeamScore(new int[]{1,2,3,5}, new int[]{8,9,10,1}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int bestTeamScore(int[] scores, int[] ages) {
+        if(scores.length==1)
+            return scores[0];
 
-
-
-        throw new IllegalArgumentException("error");
+        int[][] array= new int[scores.length][2];
+        for(int i=0;i<scores.length;i++){
+            array[i][0]= ages[i];
+            array[i][1]= scores[i];
+        }
+        Arrays.sort(array, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if(o1[0]==o2[0])
+                    return o1[1]- o2[1];
+                return o1[0]- o2[0];
+            }
+        });
+        int[] dp= new int[scores.length];
+        for(int i=0;i<scores.length;i++)
+            dp[i]= array[i][1];
+        int ans= 0;
+        for(int i=0;i<scores.length;i++)
+            for(int j=0;j<i;j++) {
+                if(array[j][1]<=array[i][1])
+                    dp[i]= Math.max(dp[j]+array[i][1], dp[i]);
+                ans= Math.max(ans, dp[i]);
+            }
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

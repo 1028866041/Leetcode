@@ -43,25 +43,37 @@
 // 👍 46 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class P1546MaximumNumberOfNonOverlappingSubarraysWithSumEqualsTarget{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1546MaximumNumberOfNonOverlappingSubarraysWithSumEqualsTarget().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.maxNonOverlapping(new int[]{1,1,1,1,1},2));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxNonOverlapping(int[] nums, int target) {
-
-
-        throw new IllegalArgumentException("error");
-    }
-
-    public void backtrack(){
-
-
-
+        int size= nums.length;
+        int i=0,res= 0;
+        while(i<size){
+            Set<Integer> set= new HashSet<Integer>(){{add(0);}};
+            int sum=0;
+            while(i<size){
+                sum+= nums[i];
+                if(set.contains(sum-target)){
+                    res++;
+                    break;
+                }else{
+                    set.add(sum);
+                    i++;
+                }
+            }
+            i++;
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
