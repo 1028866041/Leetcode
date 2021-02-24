@@ -31,7 +31,17 @@ public class P338CountingBits{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] countBits(int num) {
-        throw new IllegalArgumentException("error");
+        int[] res= new int[num+1];
+        for(int i=0;i<=num;i++){
+            res[i]= traverse(i);
+        }
+        return res;
+    }
+    public int traverse(int x){
+        int cnt;
+        for(cnt=0;x!=0;cnt++)
+            x&=x-1;
+        return cnt;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

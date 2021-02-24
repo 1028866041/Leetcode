@@ -76,17 +76,75 @@
 // 👍 16 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+
 public class P1625LexicographicallySmallestStringAfterApplyingOperations{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1625LexicographicallySmallestStringAfterApplyingOperations().new Solution();
-        System.out.println(solution);
-    }    
+        System.out.println(solution.findLexSmallestString("5525",5,1));    }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    int a,b;
+    Set<String> set= new HashSet<>();
+    String result= null;
     public String findLexSmallestString(String s, int a, int b) {
-        throw new IllegalArgumentException("error");
+        this.a= a;
+        this.b= b;
+        backtrack(s);
+        return result;
+    }
+
+    public void backtrack(String s){
+        if(set.contains(s))
+            return;
+        else
+            set.add(s);
+
+        String now= new String(s);
+        s= add(s);
+        compare(s);
+        backtrack(s);
+        s= now;
+        s= move(s);
+        compare(s);
+        backtrack(s);
+    }
+
+    public void compare(String s){
+        if(result==null){
+            result= s;
+            return;
+        }else{
+            for(int i=0;i<s.length();i++){
+                if(s.charAt(i)>result.charAt(i))
+                    return;
+                else if(s.charAt(i)<result.charAt(i))
+                    result= s;
+            }
+        }
+    }
+
+    public String add(String s){
+        StringBuilder sb=new StringBuilder("");
+        for(int i=0;i<s.length();i++){
+            if(i%2==0){
+                sb.append(s.charAt(i));
+                continue;
+            }
+            sb.append((s.charAt(i)-'0'+a)%10);
+        }
+        return sb.toString();
+    }
+
+    public String move(String s){
+        String prefix= s.substring(0,s.length()-b);
+        String suffix= s.substring(s.length()-b);
+        return suffix+ prefix;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

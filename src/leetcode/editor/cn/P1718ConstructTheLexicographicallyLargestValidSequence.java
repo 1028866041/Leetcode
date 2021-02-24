@@ -48,8 +48,47 @@ public class P1718ConstructTheLexicographicallyLargestValidSequence{
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    int[] num,res=null;
+    boolean[] flag;
     public int[] constructDistancedSequence(int n) {
-        throw new IllegalArgumentException("error");
+        flag= new boolean[n+1];
+        num= new int[n*2-1];
+        backtrack(0, n, 0);
+        return res;
+    }
+
+    public void backtrack(int deep, int n, int index){
+        if(res!=null)
+            return;
+        else if(deep==n){
+            res= num.clone();
+            return;
+        }
+
+        for(int i=index;i<num.length;i++){
+            if(num[i]==0){
+                for(int j=n;j>0;j--){
+                    if(flag[j])
+                        continue;
+                    if(j==1){
+                        flag[j]= true;
+                        num[i]=1;
+                        backtrack(deep+1,n,index+1);
+                        num[i]=0;
+                        flag[j]=false;
+                    }else if(i+j<num.length&&num[i+j]==0){
+                        flag[j]= true;
+                        num[i] =j;
+                        num[i+j]= j;
+                        backtrack(deep+1,n,index+1);
+                        num[i]=0;
+                        num[i+j]=0;
+                        flag[j]=false;
+                    }
+                }
+                break;
+            }
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

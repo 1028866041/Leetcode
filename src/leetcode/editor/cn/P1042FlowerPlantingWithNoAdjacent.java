@@ -52,17 +52,38 @@
 // 👍 87 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.LinkedList;
+
 public class P1042FlowerPlantingWithNoAdjacent{
     public static void main(String[] args) {
         // TO TEST
         Solution solution = new P1042FlowerPlantingWithNoAdjacent().new Solution();
-        System.out.println(solution);
+        System.out.println(solution.gardenNoAdj(4, new int[][]{{1,2},{2,3},{3,1}}));
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] gardenNoAdj(int n, int[][] paths) {
-        throw new IllegalArgumentException("error");
+        int[] res= new int[n];
+        LinkedList<Integer>[] adj= new LinkedList[n+1];
+        for(int i=0;i<adj.length;i++)
+            adj[i]= new LinkedList<>();
+        for(int[] path:paths){
+            adj[path[0]].add(path[1]);
+            adj[path[1]].add(path[0]);
+        }
+        for(int i=1;i<=n;i++){
+            boolean[] color= new boolean[5];
+            for(int id:adj[i])
+                color[res[id-1]]= true;
+            for(int j=1;j<=4;j++) {
+                if (!color[j]){
+                    res[i-1]= j;
+                    break;
+                }
+            }
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
