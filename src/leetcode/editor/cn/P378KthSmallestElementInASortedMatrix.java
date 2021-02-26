@@ -24,6 +24,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class P378KthSmallestElementInASortedMatrix{
     public static void main(String[] args) {
         Solution solution = new P378KthSmallestElementInASortedMatrix().new Solution();
@@ -33,7 +36,20 @@ public class P378KthSmallestElementInASortedMatrix{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-        throw new IllegalArgumentException("error");
+        PriorityQueue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0]-o2[0];
+            }
+        });
+        for(int i=0;i<matrix.length;i++)
+            queue.offer(new int[]{matrix[i][0],i,0});
+        for(int i=0;i<k-1;i++){
+            int[] now= queue.poll();
+            if(now[2]!=matrix.length-1)
+                queue.offer(new int[]{matrix[now[1]][now[2]+1],now[1],now[2]+1});
+        }
+        return queue.poll()[0];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
