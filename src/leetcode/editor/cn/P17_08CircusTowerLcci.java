@@ -18,7 +18,7 @@
 // 👍 55 👎 0
 
 package leetcode.editor.cn;
- 
+
 public class P17_08CircusTowerLcci{
     public static void main(String[] args) {
         // TO TEST

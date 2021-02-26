@@ -1,6 +1,6 @@
 func bfs(root){
     queue.add(root);
-    while(queue!=null){
+    while(!queue.isEmpty()){
         n= queue.size();
         for(i=0;i<n;i++){
             node= queue.poll();
@@ -20,23 +20,14 @@ func dfs(root){
 func backtrack(num[], ls, idx){
 	if(ls.size())
 		return;
-
     /*all visited-subset idx*/
-    //visited[idx]=true;
+    // visited[idx]=true;
 	for(i=idx;i<num.length,i++){
 		ls.add(num[i]);
 		backtrack(num, ls, i+1);
 		ls.remove(ls.size()-1);
 	}
-	//visited[idx]= false;
-}
-
-func traverse(graph){
-
-}
-
-func redblack(root){
-
+	// visited[idx]= false;
 }
 
 func dp(i){
@@ -47,26 +38,164 @@ func dp(i){
 }
 
 func divide(n){
-    return func(divide(i), divide(n-i);
+    func(divide(i), divide(n-i);
+}
+
+func graph(root[][]){
+    bfs(idx){
+        queue.offer(idx);
+        visited[idx]=1;
+        while(!queue.isEmpty()){
+            node= queue.poll();
+            for(i=0;i<root.length;i++){
+                if(!visited[i]&&root[node-1][i]==1){
+                    visited[i]=1;
+                    queue.push(i);
+                }
+            }
+        }
+    }
+    dfs(idx){
+        visited[idx]=1;
+        for(i=0;i<root.length;i++){
+            if(!visited[i]&&root[idx-1][i]==1)
+                dfs(i);
+        }
+    }
+}
+
+func avl(){
+    search(root,key){
+        if(root==null||root.val==key)
+            return root;
+        if(key<root.val)
+            return search(root.left,key);
+        if(root.val>key)
+            reutrn search(root.right,key);
+    }
+}
+
+func kmp(String s,t){
+    i=0,j=-1;
+    next[0]=-1;
+    while(i<s.length()){
+        if(j==-1||s.charAt(i)==s.charAt(j)){
+            i++;
+            j++;
+            next[i]=j;
+        }
+        else
+            j=next[j];
+    }
+    j=0;
+    while(i<s.length()&&j<t.length()){
+        if(j==-1||s.charAt(i)==t.charAt(i)){
+            i++;
+            j++;
+        }else
+            j=next[j];
+    }
+    return (j==t.length()?return i-j:-1;
 }
 
 class trie{
     trie[] next;
     boolbean end;
-
+    trie fail; /*aho-corasick*/
     insert(s){
-
+        cur=this;
+        for(i=s.length()-1;i>=0;i--){
+            j=s.charAt(i)-'a';
+            if(cur.next[j]==null)
+                cur.next[j]=new trie();
+            cur=cur.next;
+        }
+        cur.end=true;
     }
-    search(s){
-
+    boolbean search(s){
+        cur=this;
+        for(i=0;i<s.length();i++){
+            j=s.charAt(i)-'a';
+            if(cur.next[j]==null)
+                return false;
+            cur=cur.next[j];
+        }
+        return cur.end;
     }
+}
+
+func redblack(){
+    Stack<Node> stack;
+    Queue<Node> queue;
+    Map<Node,boolbean> map;
+    redblack=true;
+    boolbean isredblack(root){
+        traverse(root);
+        while(!stack.isEmpty()){
+            node= stack.pop();
+            if(node.left==null&&node.right==null){
+                if(node.val>0)
+                    map.put(node,1);
+                else
+                    map.put(node,0);
+            }else{
+                if(map.get(node.left)==map.get(node.right)){
+                    flag=false;
+                    if((node.left!=null&&node.val<0&&node.left.val<0)||
+                        (node.right!=null&&node.val<0&&node.right.val<0))
+                        flag=true;
+                    if(flag)
+                        redblack=false;
+                        break;
+                    if(node.val>0)
+                        map.put(node, map.get(node.left)+1);
+                    else
+                        map.put(node, map.get(node.left));
+                }else{
+                    redbalck=false;
+                    break;
+                }
+            }
+        }
+        return redblack;
+    }
+    traverse(root){
+        queue.offer(root);
+        while(!queue.isEmppty()){
+            node=queue.poll();
+            stack.push(node);
+            if(node.left!=null)
+                queue.push(node.left);
+            if(node.right!=null)
+                queue.offer(node.right);
+        }
+    }
+}
+
+func toposort(root[][]){
+    /*DAG to sort list*/
+    for(node:root)
+        for(node2:node )
+            degree[node2]++;
+    Queue<Integer> queue;
+    for(i=0;i<root.length;i++)
+        if(degree[i]==0)
+            queue.offer(i);
+    while(!queue.isEmpty()){
+        node=queue.poll();
+        res.add(node);
+        for(node2:root[node]){
+            if(--degree[]node2==0)
+                queue.offer(node2);
+        }
+    }
+    return res;
 }
 
 func dijkstra(num[][]){
      queue= new PriorityQueue<>((v1,v2));
      dist[0][0]=0;
-
-     queue.add(new int[]{0,0,0});
+     queue.add(int[]{0,0,0});
      while(!queue.isEmpty()){
         cur= queue.poll();
         if(visited[cur[0]][cur[1]])
@@ -84,12 +213,56 @@ func dijkstra(num[][]){
      return dist[heights.length-1][heights[0].length-1];
 }
 
-func qsort(num[]){
-
+func dsu(u,v){
+    int[] parent,rank;
+    dsu(n){
+        for(i=0;i<=n;i++){
+            parent[i]=i;
+            rank[i]=i;
+        }
+    }
+    union(u,v){
+        int pu=find(u),pv=find(v);
+        if(pu==pv)
+            return false;
+        if(rank[pv]>rank[pu])
+            parent[pu]=pv;
+        else if(rank[pv]<rank[pu])
+            parent[pv]=pu;
+        else{
+            parent[pv]=pu;
+            rank[pu]+=1;
+        }
+        return true;
+    }
+    find(n){
+        while(parent[u]!=u){
+            parent[u]=parent[parent[u]];
+            u=parent[u];
+        }
+        return u;
+    }
 }
 
-func toposort(){
-
+func qsort(num[],start,end){
+    i=start,j=end;
+    while(i<j){
+        while(i<j&&num[j]>num[start])
+            j--;
+        while(i<j&&num[i]<num[start])
+            i++;
+        if(num[i]==num[j]&&i<j)
+            i++;
+        else{
+            tmp=num[i];
+            num[i]=num[j];
+            num[j]=tmp;
+        }
+        if(i-1>start)
+            qsort(num,start,i-1);
+        if(j+1<end)
+            qsort(num,j+1,end);
+    }
 }
 
 func search(num[], target){
@@ -115,4 +288,11 @@ func window(num[]){
         }
     }
     return max(j-i);
+}
+
+func memory(){
+    boolbean[] mem;
+    recurse(mem, n){
+        func(recurse(i), recurse(n-i);
+    }
 }
