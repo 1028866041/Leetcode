@@ -6,7 +6,6 @@ func bfs(root){
             node= queue.poll();
             queue.offer(node.left);
             queue.offer(node.right);
-            node.val;
         }
     }
 }
@@ -21,13 +20,14 @@ func backtrack(num[], ls, idx){
 	if(ls.size())
 		return;
     /*all visited-subset idx*/
-    // visited[idx]=true;
+    visited[idx]=true;
 	for(i=idx;i<num.length,i++){
 		ls.add(num[i]);
 		backtrack(num, ls, i+1);
 		ls.remove(ls.size()-1);
 	}
-	// visited[idx]= false;
+	visited[idx]= false;
+	/*may convert to bfs/dfs*/
 }
 
 func dp(i){
@@ -112,7 +112,7 @@ class trie{
         }
         cur.end=true;
     }
-    boolbean search(s){
+    search(s){
         cur=this;
         for(i=0;i<s.length();i++){
             j=s.charAt(i)-'a';
@@ -205,7 +205,7 @@ func dijkstra(num[][]){
             nx= cur[0]+d[0];
             ny= cur[1]+d[1];
             if(nx<heights.length&&ny<heights[0].length){
-                cost= Math.min(Math.max(dist[cur[0]][cur[0]],distance(cur[0],cur[1],nx,ny)), cost);
+                cost= Math.min(Math.max(dist[cur[0]][cur[1]],distance(cur[0],cur[1],nx,ny)), cost);
                 queue.offer(nx,ny, cost);
             }
         }
@@ -258,9 +258,9 @@ func qsort(num[],start,end){
             num[i]=num[j];
             num[j]=tmp;
         }
-        if(i-1>start)
+        if(i>start+1)
             qsort(num,start,i-1);
-        if(j+1<end)
+        if(j<end-1)
             qsort(num,j+1,end);
     }
 }
@@ -268,10 +268,9 @@ func qsort(num[],start,end){
 func search(num[], target){
     l=0,r=nums.length-1;
     while(l<=r){
-        mid=(l+r)/2;
-        if(num[mid]==target){
+        mid=(r-1)/2+l;
+        if(num[mid]==target)
             break;
-        }
         if(num[mid]<target){
             l=mid+1;
         }else{
