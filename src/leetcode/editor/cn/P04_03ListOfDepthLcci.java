@@ -77,7 +77,7 @@ class Solution {
         if(root==null){
             return;
         }
-        //
+
         if(ans.size()==deep){
             ans.add(new ListNode(root.val));
         }else{
@@ -88,7 +88,6 @@ class Solution {
             }
             s.next= new ListNode(root.val);
         }
-
         traverse(root.left, deep+1);
         traverse(root.right, deep+1);
     }

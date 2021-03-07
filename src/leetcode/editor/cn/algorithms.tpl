@@ -281,11 +281,9 @@ func search(num[], target){
 
 func window(num[]){
     j=0;
-    for(i=0;i<num.length;i++){
-        while(j<num.length){
+    for(i=0;i<num.length;i++)
+        while(j<num.length)
            j++;
-        }
-    }
     return max(j-i);
 }
 
@@ -293,5 +291,13 @@ func memory(){
     boolbean[] mem;
     recurse(mem, n){
         func(recurse(i), recurse(n-i);
+    }
+}
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int n= sc.nextInt();
+        sc.close();
     }
 }
