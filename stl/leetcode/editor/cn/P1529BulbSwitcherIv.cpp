@@ -7,6 +7,7 @@ class Solution {
 public:
     int minFlips(string target) {
 
+        throw("IllegalArgumentException error");
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
