@@ -18,3 +18,13 @@ func main(){
     fmt.Println()
 }
 ${question.code}
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+${question.code}
+int main(int argc, char *argv) {
+    // TO TEST
+    //cout<<Solution()<<endl;
+}
