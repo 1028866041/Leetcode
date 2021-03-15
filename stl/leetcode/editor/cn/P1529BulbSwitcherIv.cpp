@@ -11,8 +11,3 @@ public:
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
-
-int main(int argc, char *argv) {
-    // TO TEST
-    //cout<<Solution()<<endl;
-}

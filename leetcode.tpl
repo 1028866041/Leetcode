@@ -19,12 +19,8 @@ func main(){
 }
 ${question.code}
 
-#include <string>
-#include <iostream>
+include <string>
+include <iostream>
 using namespace std;
 
 ${question.code}
-int main(int argc, char *argv) {
-    // TO TEST
-    //cout<<Solution()<<endl;
-}
