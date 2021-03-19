@@ -1,6 +1,8 @@
 #include "tank.h"
 #include "ptr.h"
 #include <iostream>
+#include <limits>
+#include <string>
 using namespace std;
 
 int main(int argc, char *argv) {
@@ -12,6 +14,7 @@ int main(int argc, char *argv) {
     *p+=2;
     q=p;
     cout<<p<<":"<<q<<endl;
+    cout<<numeric_limits<string>::is_specialized<<endl;
 
     Tank t1('a');
     cout<<t1.getCount()<<endl;
