@@ -1,5 +1,5 @@
-#include "tank.h"
-#include <iostream>
+#include"tank.h"
+#include<iostream>
 using namespace std;
 
 int Tank::count=0;
