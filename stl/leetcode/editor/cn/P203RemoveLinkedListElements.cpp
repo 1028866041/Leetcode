@@ -38,6 +38,13 @@
 #include <iostream>
 using namespace std;
 
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(NULL) {}
+    ListNode(int x) : val(x), next(NULL) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
@@ -50,18 +57,25 @@ using namespace std;
  * };
  */
 class Solution {
-    struct ListNode {
-        int val;
-        ListNode *next;
-        ListNode() : val(0), next(NULL) {}
-        ListNode(int x) : val(x), next(NULL) {}
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
 public:
-    ListNode* removeElements(ListNode* head, int val) {
-
-        throw("IllegalArgumentException error");
-    }
+   ListNode* removeElements(ListNode* head, int val) {
+       ListNode* hair=new ListNode(0);
+       ListNode* cur=hair;
+       ListNode* pre=NULL;
+       hair->next= head;
+       while(cur!= NULL){
+           if(pre!=NULL&&cur->val==val){
+               pre->next= cur->next;
+               ListNode* node=cur;
+               cur= cur->next;
+               node->next= NULL;
+               continue;
+           }
+           pre= cur;
+           cur= cur->next;
+       }
+       return hair->next;
+   }
 };
 //leetcode submit region end(Prohibit modification and deletion)
 

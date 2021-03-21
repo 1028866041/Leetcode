@@ -33,12 +33,21 @@ public class P647PalindromicSubstrings{
     public static void main(String[] args) {
         Solution solution = new P647PalindromicSubstrings().new Solution();
         // TO TEST
-        System.out.println(solution);
+        System.out.println(solution.countSubstrings("aaa"));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int countSubstrings(String s) {
-        throw new IllegalArgumentException("error");
+        int res=0;
+        for(int i=0;i<2*s.length()-1;i++){
+            int l=i/2,r=i/2+i%2;
+            while(l>=0&&r<s.length()&& s.charAt(l)==s.charAt(r)){
+                l--;
+                r++;
+                res++;
+            }
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
