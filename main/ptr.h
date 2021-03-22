@@ -3,7 +3,7 @@
 using namespace std;
 
 template <class T>
-ostream& operator<<(ostream& strm, auto_ptr<T>& p)
+ostream& operator<<(ostream& strm, const unique_ptr<T>& p)
 {
     if(p.get()==NULL){
         strm<< "nullptr";

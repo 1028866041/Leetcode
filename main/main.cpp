@@ -14,14 +14,10 @@ int main(int argc, char **argv) {
     //allocators();
     rb_trees();
 
-    auto_ptr<int> p(new int(1));
-    auto_ptr<int> q;
-    cout<<p<<":"<<q<<endl;
-    *p+=2;
-    q=p;
-    cout<<p<<":"<<q<<endl;
-    cout<<numeric_limits<string>::is_specialized<<endl;
 
+    unique_ptr<int> p(new int(1));
+    cout<<p<<":"<<endl;
+    cout<<numeric_limits<string>::is_specialized<<endl;
     Tank t1('a');
     cout<<t1.getCount()<<endl;
     Tank *pq=new Tank('b');
@@ -31,6 +27,6 @@ int main(int argc, char **argv) {
     delete pq;
     delete qp;
     cout<<Tank::getCount()<<endl;
-    system("pause");
+    //system("pause");
     return 0;
 }
