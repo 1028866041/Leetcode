@@ -26,3 +26,17 @@ int Tank::getCount()
 {
     return count;
 }
+
+int tank()
+{
+    Tank t1('a');
+    cout<<t1.getCount()<<endl;
+    Tank *pq=new Tank('b');
+    cout<<Tank::getCount()<<endl;
+    Tank *qp=new Tank('c');
+    cout<<qp->getCount()<<endl;
+    delete pq;
+    delete qp;
+    cout<<Tank::getCount()<<endl;
+    return 0;
+}
