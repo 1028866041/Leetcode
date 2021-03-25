@@ -1,5 +1,6 @@
 #include<iostream>
 #include<complex>
+#include<cstdio>
 using namespace std;
 
 void overload_operator();
@@ -69,4 +70,34 @@ void overload_operator()
         //Mem* arry= ::new Mem(3);
         //::delete[] arry;
     }
+}
+
+int file_handle()
+{
+    cout<<stdin<<" "<<stdout<<" "<<stderr<<endl;
+    cout<<stdin->_file<<" "<<stdout->_file<<" "<<stderr->_file<<endl;
+
+    FILE* fp= fopen("mem.dat", "wb");
+    if(fp== NULL)
+        return -1;
+    cout<<fp<<" "<<fp->_file<<endl;
+    fwrite("abcde", 5,1,fp);
+    fclose(fp);
+    cout<<fp<<" "<<fp->_file<<endl;
+    fp= fopen("mem.dat", "wb");
+    if(fp== NULL)
+        return -1;
+    cout<<fp<<" "<<fp->_file<<endl;
+    fwrite("fghij", 5,1,fp);
+    fclose(fp);
+    cout<<fp<<" "<<fp->_file<<endl;
+    FILE* f[60];
+    char buffer[20];
+    /*for(int i=0;i<60;i++)
+    {
+        f[i]= fopen(_itoa(i, buffer,10), "wb");
+        cout<<f[i]->_file<<endl;
+    }*/
+    remove("mem.dat");
+    return 0;
 }

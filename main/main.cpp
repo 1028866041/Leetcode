@@ -8,12 +8,14 @@ using namespace std;
 extern int conts();
 extern int rb_trees();
 extern int mem();
+extern int file_handle();
 int main(int argc, char **argv) {
     cout<<__cplusplus<<endl;
     conts();
     //allocators();
     rb_trees();
     mem();
+    file_handle();
 
     unique_ptr<int> p(new int(1));
     cout<<p<<": ";
