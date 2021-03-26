@@ -4,7 +4,7 @@
 using namespace std;
 
 void overload_operator();
-int mem(){
+int memory(){
     void* p=malloc(2);
     free(p);
     complex<int>* p2=new complex<int>;
