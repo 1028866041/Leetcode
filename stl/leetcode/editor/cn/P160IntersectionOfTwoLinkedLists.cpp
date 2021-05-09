@@ -79,7 +79,20 @@ struct ListNode {
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        throw("IllegalArgumentException error");
+        ListNode *pos=headA, *pos2=headB;
+        while(pos!= pos2){
+            if(pos!= nullptr){
+                pos= pos->next;
+            }else{
+                pos= headB;
+            }
+            if(pos2!= nullptr){
+                pos2= pos2->next;
+            }else{
+                pos2= headA;
+            }
+        }
+        return pos;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

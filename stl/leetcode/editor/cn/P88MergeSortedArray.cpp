@@ -42,8 +42,30 @@ using namespace std;
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-
-        throw("IllegalArgumentException error");
+        vector<int> res(m+n);
+        int i=0,j=0;
+        while(i<m&& j<n){
+            if(nums1[i]<nums2[j]){
+                res[i+j]= nums1[i];
+                i++;
+            }else{
+                res[i+j]= nums2[j];
+                j++;
+            }
+        }
+        if(i==m){
+            for(int k=j;k<n;k++){
+                res[i+k]= nums2[k];
+            }
+        }
+        if(j==n){
+            for(int k=i;k<m;k++){
+                res[k+j]= nums1[k];
+            }
+        }
+        for(int i=0;i<m+n;i++){
+            nums1[i]= res[i];
+        }
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -41,7 +41,20 @@ struct ListNode {
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        throw("IllegalArgumentException error");
+        vector<int> res;
+        while(head!= nullptr){
+            res.emplace_back(head->val);
+            head= head->next;
+        }
+        int i=0,j=res.size()-1;
+        while(i< j){
+            if(res[i]!=res[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -23,7 +23,20 @@ using namespace std;
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        throw("IllegalArgumentException error");
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==0){
+                int k=0;
+                while(i+k<nums.size()&&nums[i+k]==0){
+                    k++;
+                }
+                for(int j=i;j<nums.size()-k;j++){
+                    nums[j]= nums[j+k];
+                }
+                for(int j=nums.size()-k;j<nums.size();j++){
+                    nums[j]= 0;
+                }
+            }
+        }
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
