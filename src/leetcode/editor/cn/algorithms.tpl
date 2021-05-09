@@ -301,3 +301,12 @@ public class Main {
         sc.close();
     }
 }
+
+int main()
+{
+	int i;
+    while(cin >> i){
+    	cout<< i << endl;
+	}
+    return 0;
+}

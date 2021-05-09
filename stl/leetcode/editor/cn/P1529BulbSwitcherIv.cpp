@@ -6,7 +6,6 @@ using namespace std;
 class Solution {
 public:
     int minFlips(string target) {
-
         throw("IllegalArgumentException error");
     }
 };

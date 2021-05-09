@@ -91,9 +91,9 @@ int file_handle()
     fwrite("fghij", 5,1,fp);
     fclose(fp);
     cout<<fp<<" "<<fp->_file<<endl;
-    FILE* f[60];
+    /*FILE* f[60];
     char buffer[20];
-    /*for(int i=0;i<60;i++)
+    for(int i=0;i<60;i++)
     {
         f[i]= fopen(_itoa(i, buffer,10), "wb");
         cout<<f[i]->_file<<endl;

@@ -2,3 +2,5 @@
 /out/
 *.json
 *.exe
+*.iml
+*.xml

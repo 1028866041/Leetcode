@@ -1,4 +1,3 @@
-#include"tank.h"
 #include"ptr.h"
 #include<iostream>
 #include<limits>
@@ -9,7 +8,8 @@ extern int conts();
 extern int rb_trees();
 extern int mem();
 extern int file_handle();
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     cout<<__cplusplus<<endl;
     conts();
     //allocators();
