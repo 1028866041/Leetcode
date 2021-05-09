@@ -56,8 +56,9 @@
 // Related Topics 广度优先搜索 图 
 // 👍 8 👎 0
 
-include<string>
-include<iostream>
+#include<string>
+#include<iostream>
+#include<vector>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
