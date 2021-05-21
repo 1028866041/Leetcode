@@ -39,7 +39,23 @@ using namespace std;
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
-        throw("IllegalArgumentException error");
+        int i=0;
+        while(i<strs[0].length()){
+            int j=0;
+            for(j=0;j<strs.size();j++){
+                if(strs[j].length()<i||strs[j][i]!=strs[0][i]){
+                    break;
+                }
+            }
+            if(j== strs.size())
+                i++;
+            else
+                break;
+        }
+        string res="";
+        for(int j=0;j<i;j++)
+            res+= strs[0][j];
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

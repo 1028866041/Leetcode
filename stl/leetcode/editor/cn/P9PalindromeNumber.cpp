@@ -56,7 +56,19 @@ using namespace std;
 class Solution {
 public:
     bool isPalindrome(int x) {
-        throw("IllegalArgumentException error");
+        vector<int> vec;
+        if(x<0)
+            return false;
+        while(x>0){
+            vec.push_back(x%10);
+            x/= 10;
+        }
+        for(int i=0;i<vec.size()/2;i++){
+            if(vec[i]!= vec[vec.size()-1-i]){
+                return false;
+            }
+        }
+        return true;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

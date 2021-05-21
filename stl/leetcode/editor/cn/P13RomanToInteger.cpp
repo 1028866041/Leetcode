@@ -76,13 +76,33 @@
 
 #include<string>
 #include<iostream>
+#include<map>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     int romanToInt(string s) {
+        int res= 0;
+        map<char,int> map;
+        map['I']= 1;
+        map['V']= 5;
+        map['X']= 10;
+        map['L']= 50;
+        map['C']= 100;
+        map['D']= 500;
+        map['M']= 1000;
+
+        res= map[s[s.length()-1]];
+        for(int i=s.length()-2;i>=0;i--){
+            if(map[i]<map[s[i+1]]){
+                res-= map[s[i]];
+            }else{
+                res+= map[s[i]];
+            }
+        }
         throw("IllegalArgumentException error");
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
