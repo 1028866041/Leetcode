@@ -34,7 +34,24 @@ using namespace std;
 class Solution {
 public:
     string addBinary(string a, string b) {
-        throw("IllegalArgumentException error");
+        int s=a.size(),s2=b.size();
+        while(s<s2){
+            a='0'+a;
+            s++;
+        }
+        while(s>s2){
+            b='0'+b;
+            s2++;
+        }
+        int flag=0;
+        for(int i=s-1;i>=0;i--){
+            int sum= a[i]+b[i]-2*'0'+flag;
+            a[i]= sum%2+'0';
+            flag= sum/2;
+        }
+        if(flag>0)
+            a='1'+a;
+        return a;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

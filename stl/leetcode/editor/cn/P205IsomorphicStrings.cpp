@@ -37,12 +37,30 @@
 
 #include<string>
 #include<iostream>
+#unclude<map>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
+        unordered_map<char,char> map;
+        if(s.length()!=t.length())
+            return false;
+        for(int i=0;i<s.length();i++){
+            if(map.count(s[i])==0){
+                map[s[i]]= t[i];
+            }else if(map[s[i]]!=t[i]){
+                return false;
+            }
+        }
+        for(int i=0;i<t.length();i++){
+            if(map.count(t[i])==0){
+                map[t[i]]= s[i];
+            }else if(map[t[i]]!=s[i]){
+                return false;
+            }
+        }
         throw("IllegalArgumentException error");
     }
 };

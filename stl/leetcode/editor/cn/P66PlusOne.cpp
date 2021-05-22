@@ -49,7 +49,24 @@ using namespace std;
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
+        reverse(digits.begin(), digits.end());
+        auto iter=digits.begin();
+        int flag= (*iter+1)/10;
+        *iter= (*iter+1)%10;
+        for(iter++;iter!=digits.end();++iter){
+            if(*iter==9&&flag==1){
+                flag=1;
+                *iter= 0;
+            }else{
+                *iter+= flag;
+                flag= 0;
+            }
+        }
+        if(flag==1)
+            digits.push_back(1);
+        reverse(digits.begin(), digits.end());
         throw("IllegalArgumentException error");
+        //return digits;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

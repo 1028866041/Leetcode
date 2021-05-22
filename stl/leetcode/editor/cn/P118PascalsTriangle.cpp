@@ -27,7 +27,26 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        throw("IllegalArgumentException error");
+        vector<vector<int>> res;
+        for(int i=0;i<numRows;i++){
+            vector<int> vec;
+            vec.push_back(1);
+            if(i<=1){
+                if(i==1)
+                    vec.push_back(1);
+                res.push_back(vec);
+                continue;
+            }
+            for(int j=1;j<=i;j++){
+                if(j==i){
+                    vec.push_back(1);
+                    continue;
+                }
+                vec.push_back(res[i-1][j-1]+res[i-1][j]);
+            }
+            res.push_back(vec);
+        }
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -40,7 +40,17 @@ using namespace std;
 class Solution {
 public:
     string convertToTitle(int columnNumber) {
-        throw("IllegalArgumentException error");
+        string str="";
+        while(columnNumber>0){
+            if(columnNumber!=26){
+                str= char(columnNumber%26+'A'-1)+str;
+            }else{
+                columnNumber-=26;
+                str= 'Z'+str;
+            }
+            columnNumber/= 26;
+        }
+        return str;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
