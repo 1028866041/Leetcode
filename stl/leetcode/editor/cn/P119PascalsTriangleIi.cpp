@@ -25,7 +25,19 @@ using namespace std;
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        throw("IllegalArgumentException error");
+        int dp[rowIndex+1][rowIndex+1];
+        dp[0][0]= 1;
+        for(int i=1;i<=rowIndex;i++){
+            dp[i][0]=dp[i][i]=1;
+            for(int j=1;j<i;j++){
+                dp[i][j]= dp[i-1][j-1]+dp[i-1][j];
+            }
+        }
+        vector<int> vec;
+        for(int i:dp[rowIndex]){
+            vec.push_back(i);
+        }
+        return vec;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

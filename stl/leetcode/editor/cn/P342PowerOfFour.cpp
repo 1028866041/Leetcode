@@ -51,7 +51,10 @@ using namespace std;
 class Solution {
 public:
     bool isPowerOfFour(int n) {
-        throw("IllegalArgumentException error");
+        while(n>0&&n%4==0){
+            n/= 4;
+        }
+        return n==1;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
