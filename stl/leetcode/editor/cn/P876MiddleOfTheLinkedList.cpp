@@ -54,7 +54,18 @@ struct ListNode {
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        throw("IllegalArgumentException error");
+        int i=0,j;
+        ListNode* p=head;
+        while(p!=nullptr){
+            i++;
+            p= p->next;
+        }
+        j=(i+1)/2;
+        p=head;
+        while(p!=nullptr&&j-->1){
+            p=p->next;
+        }
+        return p;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

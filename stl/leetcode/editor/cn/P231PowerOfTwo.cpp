@@ -27,7 +27,9 @@ using namespace std;
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
-        throw("IllegalArgumentException error");
+        if(n<=0)
+            return false;
+        return (n&(n-1))==0;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

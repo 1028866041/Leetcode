@@ -69,9 +69,7 @@ class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
 
-
-
-
+        throw("IllegalArgumentException error");
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

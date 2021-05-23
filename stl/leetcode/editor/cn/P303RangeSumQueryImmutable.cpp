@@ -51,12 +51,16 @@ using namespace std;
 //leetcode submit region begin(Prohibit modification and deletion)
 class NumArray {
 public:
+    vector<int> num;
     NumArray(vector<int>& nums) {
-        throw("IllegalArgumentException error");
+        num.resize(nums.size()+1);
+        for(int i=0;i<nums.size();i++){
+            num[i+1]= nums[i]+num[i];
+        }
     }
     
     int sumRange(int left, int right) {
-        throw("IllegalArgumentException error");
+        return num[right+1]-num[left];
     }
 };
 

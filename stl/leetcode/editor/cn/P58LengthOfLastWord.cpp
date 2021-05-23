@@ -37,7 +37,18 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        throw("IllegalArgumentException error");
+        int i=s.length()-1;
+        while(s[i]==' '){
+            if(i==0)
+                return 0;
+            i--;
+        }
+        s= s.substr(0,i+1);
+        for(int i=s.length()-1;i>=0;i--){
+            if(s[i]==' ')
+                return s.length()-1-i;
+        }
+        return s.length();
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

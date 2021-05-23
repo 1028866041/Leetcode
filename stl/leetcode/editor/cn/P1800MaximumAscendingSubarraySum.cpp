@@ -58,7 +58,18 @@ using namespace std;
 class Solution {
 public:
     int maxAscendingSum(vector<int>& nums) {
-        throw("IllegalArgumentException error");
+        int res=0;
+        for(int i=0;i<nums.size();i++){
+            int j=0,k= nums[i];
+            while(i+j<nums.size()-1&& nums[i+j]<nums[i+j+1]){
+                k+= nums[i+j+1];
+                j++;
+            }
+            i+= j;
+            if(res<k)
+                res= k;
+        }
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

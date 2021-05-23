@@ -56,13 +56,23 @@
 #include<string>
 #include<iostream>
 #include<vector>
+#include<stack>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     int minOperations(vector<string>& logs) {
-        throw("IllegalArgumentException error");
+        stack<string> stack;
+        for(int i=0;i<logs.size();i++){
+            if(logs[i]=="../"){
+                if(!stack.empty())
+                    stack.pop();
+            }else if(logs[i]!="./"){
+                stack.push(logs[i]);
+            }
+        }
+        return stack.size();
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

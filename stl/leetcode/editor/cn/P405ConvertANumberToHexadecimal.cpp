@@ -39,7 +39,8 @@ using namespace std;
 class Solution {
 public:
     string toHex(int num) {
-       throw("IllegalArgumentException error");
+
+        throw("IllegalArgumentException error");
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

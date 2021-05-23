@@ -20,8 +20,9 @@ func main(){
 ${question.code}
 
 ${question.content}
-\#include<string>
 \#include<iostream>
+\#include<algorithm>
+\#include<string>
 using namespace std;
 
 ${question.code}

@@ -43,13 +43,20 @@
 #include<string>
 #include<iostream>
 #include<vector>
+#include<set>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-       throw("IllegalArgumentException error");
+        set<int> set(nums.begin(),nums.end());
+        if(set.size()<3)
+            return *set.rbegin();
+        auto iter= set.rbegin();
+        iter++;
+        iter++;
+        return *iter;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

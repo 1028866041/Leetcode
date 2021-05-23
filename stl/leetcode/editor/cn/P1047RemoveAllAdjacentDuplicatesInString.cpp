@@ -34,8 +34,15 @@ using namespace std;
 class Solution {
 public:
     string removeDuplicates(string S) {
-
-       throw("IllegalArgumentException error");
+        string str;
+        for(char ch:S){
+            if(!str.empty()&&str.back()==ch){
+                str.pop_back();
+            }else{
+                str.push_back(ch);
+            }
+        }
+        return str;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -45,13 +45,21 @@
 
 #include<string>
 #include<iostream>
+#include<algorithm>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-       throw("IllegalArgumentException error");
+        sort(s.begin(),s.end());
+        sort(t.begin(),t.end());
+        for(int i=0;i<s.length();i++){
+            if(s[i]!=t[i]){
+                return t[i];
+            }
+        }
+        return t[t.length()-1];
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -76,13 +76,25 @@
 
 #include<string>
 #include<iostream>
+#include<unordered_map>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     int romanToInt(string s) {
-        throw("IllegalArgumentException error");
+        unordered_map<char,int> map={{'I', 1},{'V', 5},{'X', 10},
+                {'L', 50},{'C', 100},{'D', 500},{'M', 1000}};
+        int res= 0;
+        for(int i=0;i<s.length();i++){
+            int val= map[s[i]];
+            if(i<s.length()-1&& val< map[s[i+1]]){
+                res-= val;
+            }else{
+                res+= val;
+            }
+        }
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

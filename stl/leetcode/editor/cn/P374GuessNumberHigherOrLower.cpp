@@ -73,7 +73,18 @@ using namespace std;
 class Solution {
 public:
     int guessNumber(int n) {
-        throw("IllegalArgumentException error");
+        int l=0,r=n,i;
+        while(l<=r){
+            i= (r-l)/2+l;
+            /*if(guess(i)<0){
+                r=i-1;
+            }else if(guess(i)>0){
+                l=i+1;
+            }else{
+                return i;
+            }*/
+        }
+        return l;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
