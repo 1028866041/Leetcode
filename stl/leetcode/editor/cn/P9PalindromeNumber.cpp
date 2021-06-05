@@ -48,8 +48,8 @@
 // Related Topics 数学 
 // 👍 1495 👎 0
 
-#include<string>
 #include<iostream>
+#include<vector>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
