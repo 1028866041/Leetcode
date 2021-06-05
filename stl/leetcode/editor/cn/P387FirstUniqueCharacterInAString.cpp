@@ -19,13 +19,26 @@
 
 #include<string>
 #include<iostream>
+#include<unordered_map>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     int firstUniqChar(string s) {
-       throw("IllegalArgumentException error");
+        unordered_map<char,int> map;
+        for(char ch:s){
+            if(map.count(ch)==0){
+                map[ch]= 1;
+            }else{
+                map[ch]= map[ch]+1;
+            }
+        }
+        for(int i=0;i<s.length();i++){
+            if(map[s[i]]==1)
+                return i;
+        }
+        return -1;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

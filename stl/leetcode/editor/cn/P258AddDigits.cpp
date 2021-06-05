@@ -14,13 +14,24 @@
 
 #include<string>
 #include<iostream>
+#include<sstream>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     int addDigits(int num) {
-        throw("IllegalArgumentException error");
+        int res=0;
+        if(num<10)
+            return num;
+        for(char ch:to_string(num)){
+            int i=0;
+            stringstream s;
+            s<<ch;
+            s>>i;
+            res+= i;
+        }
+        return addDigits(res);
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

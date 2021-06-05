@@ -66,6 +66,13 @@ class Solution {
 public:
     vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
         throw("IllegalArgumentException error");
+
+
+    }
+
+    void traverse(){
+
+
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -78,7 +78,20 @@ using namespace std;
 class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
-        throw("IllegalArgumentException error");
+        vector<string> vec;
+        for(int i=0;i<nums.size();i++){
+            int j=i;
+            string str= to_string(nums[i]);
+            while(j<nums.size()-1&&nums[j]==nums[j+1]-1){
+                j++;
+            }
+            if(j>i){
+                str+= "->"+to_string(nums[j]);
+            }
+            vec.push_back(str);
+            i=j;
+        }
+        return vec;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

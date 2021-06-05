@@ -62,7 +62,17 @@ using namespace std;
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
-        throw("IllegalArgumentException error");
+        int l=0,r=letters.size()-1;
+        if(letters[r]<=target)
+            return letters[l];
+        while(l<r){
+            int i=(r-l)/2+l;
+            if(letters[i]<=target){
+                l= i+1;
+            }else
+                r= i;
+        }
+        return letters[r];
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -53,13 +53,29 @@
 
 #include<string>
 #include<iostream>
+#include<stack>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     string makeGood(string s) {
-        throw("IllegalArgumentException error");
+        stack<char> stack;
+        for(int i=0;i<s.length();i++){
+            if(!stack.empty()){
+                if(stack.top()==s[i]-32||stack.top()==s[i]+32){
+                    stack.pop();
+                    continue;
+                }
+            }
+            stack.push(s[i]);
+        }
+        string str="";
+        while(!stack.empty()){
+            str=stack.top()+str;
+            stack.pop();
+        }
+        return str;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

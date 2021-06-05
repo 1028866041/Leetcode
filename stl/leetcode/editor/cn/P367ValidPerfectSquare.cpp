@@ -36,7 +36,18 @@ using namespace std;
 class Solution {
 public:
     bool isPerfectSquare(int num) {
-        throw("IllegalArgumentException error");
+        long long l=0,r=num,i;
+
+        while(l<=r){
+            i= (r-l)/2+l;
+            if(i*i<num){
+                l+= 1;
+            }else if(i*i>num){
+                r/= 2;
+            }else
+                return true;
+        }
+        return false;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

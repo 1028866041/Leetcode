@@ -53,6 +53,7 @@
 
 #include<string>
 #include<iostream>
+#include<algorithm>
 #include<vector>
 using namespace std;
 
@@ -60,7 +61,12 @@ using namespace std;
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        throw("IllegalArgumentException error");
+        sort(nums.begin(), nums.end());
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==i+1)
+                return i;
+        }
+        return nums.size();
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

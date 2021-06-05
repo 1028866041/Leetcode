@@ -52,13 +52,17 @@
 
 #include<string>
 #include<iostream>
+#include<cmath>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     bool isPowerOfThree(int n) {
-        throw("IllegalArgumentException error");
+        if(n<=0)
+            return false;
+        double s=log10(n)/log10(3);
+        return s== floor(s);
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
