@@ -1,6 +1,6 @@
 #include<iostream>
 #include<algorithm>
-#include<string>
+#include<cmath>
 #include<vector>
 using namespace std;
 
@@ -8,7 +8,17 @@ using namespace std;
 class Solution {
 public:
     vector<int> constructRectangle(int area) {
-        throw("IllegalArgumentException error");
+        int i= sqrt(area);
+        vector<int> vec;
+        while(i>0){
+            if(area%i==0){
+                vec.push_back(area/i);
+                vec.push_back(i);
+                break;
+            }
+            i--;
+        }
+        return vec;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

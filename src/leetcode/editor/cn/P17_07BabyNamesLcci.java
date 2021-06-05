@@ -34,9 +34,6 @@ public class P17_07BabyNamesLcci{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String[] trulyMostPopular(String[] names, String[] synonyms) {
-
-
-
         throw new IllegalArgumentException("error");
     }
 }

@@ -53,7 +53,6 @@ public class P63UniquePathsIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-
         throw new IllegalArgumentException("error");
     }
 }

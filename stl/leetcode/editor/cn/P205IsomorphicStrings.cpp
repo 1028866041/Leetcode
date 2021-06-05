@@ -44,24 +44,16 @@ using namespace std;
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        unordered_map<char,char> map;
-        if(s.length()!=t.length())
-            return false;
+        unordered_map<char,char> s2;
+        unordered_map<char,char> t2;
         for(int i=0;i<s.length();i++){
-            if(map.count(s[i])==0){
-                map[s[i]]= t[i];
-            }else if(map[s[i]]!=t[i]){
+            char x=s[i],y=t[i];
+            if((s2.count(x)&&s2[x]!=y)||(t2.count(y)&&t2[y]!=x))
                 return false;
-            }
+            s2[x]= y;
+            t2[y]= x;
         }
-        for(int i=0;i<t.length();i++){
-            if(map.count(t[i])==0){
-                map[t[i]]= s[i];
-            }else if(map[t[i]]!=s[i]){
-                return false;
-            }
-        }
-        throw("IllegalArgumentException error");
+        return true;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

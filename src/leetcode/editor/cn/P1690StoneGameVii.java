@@ -54,7 +54,6 @@ public class P1690StoneGameVii{
 class Solution {
     public int stoneGameVII(int[] stones) {
         int[] dp= new int[stones.length];
-
         throw new IllegalArgumentException("error");
     }
 }

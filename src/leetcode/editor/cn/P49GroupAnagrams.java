@@ -32,8 +32,6 @@ public class P49GroupAnagrams{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-
-
         throw new IllegalArgumentException("error");
     }
 }

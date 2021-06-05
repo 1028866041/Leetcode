@@ -121,7 +121,6 @@ class Node {
 
 class Solution {
     public Node cloneGraph(Node node) {
-
         throw new IllegalArgumentException("error");
     }
 }
