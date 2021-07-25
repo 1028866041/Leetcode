@@ -47,7 +47,19 @@ using namespace std;
 class Solution {
 public:
     int countGoodRectangles(vector<vector<int>>& rectangles) {
-        throw("IllegalArgumentException error");
+        int max= 0,res=0;
+        vector<int> vec(0,rectangles.size());
+        for(int i=0;i<rectangles.size();i++){
+            int num= min(rectangles[i][0], rectangles[i][1]);
+            max= max> num? max:num;
+            vec.push_back(num);
+        }
+        for(int j=0;j<vec.size();j++){
+           if(vec[j]==max){
+               res++;
+           }
+        }
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
