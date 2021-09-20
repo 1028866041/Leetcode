@@ -48,13 +48,33 @@ package leetcode.editor.cn;
 public class P200NumberOfIslands{
     public static void main(String[] args) {
         Solution solution = new P200NumberOfIslands().new Solution();
-        // TO TEST
-        System.out.println(solution);
+        System.out.println(solution.numIslands(new char[][]{{'1','1','1','1','0'},
+                {'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}}));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numIslands(char[][] grid) {
-        throw new IllegalArgumentException("error");
+        int res= 0;
+        for(int i=0; i<grid.length; i++){
+            for(int j=0; j<grid[0].length; j++){
+                if (grid[i][j]== '1') {
+                    traverse(grid, i, j);
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+
+    public void traverse(char[][] grid, int i, int j) {
+        if(i<0|| i>=grid.length|| j<0|| j>=grid[0].length || grid[i][j]=='0') {
+            return;
+        }
+        grid[i][j]= '0';
+        int[][] dir= {{-1,0},{0,1},{1,0},{0,-1}};
+        for(int k=0; k<4; k++) {
+            traverse(grid, i+dir[k][0], j+dir[k][1]);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

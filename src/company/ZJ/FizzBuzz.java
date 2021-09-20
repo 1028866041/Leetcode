@@ -7,8 +7,8 @@ public class FizzBuzz {
     public FizzBuzz(int n) {
         this.n = n;
     }
-    // printFizz.run() outputs "fizz".
-    public void fizz(Runnable printFizz) throws InterruptedException {
+    /*
+    public void fizz(Runnable printFizz) {
         synchronized (mutex){
             while(num<=n){
                 if(num%3!=0|| num%5==0){
@@ -21,8 +21,7 @@ public class FizzBuzz {
             mutex.notify();
         }
     }
-    // printBuzz.run() outputs "buzz".
-    public void buzz(Runnable printBuzz) throws InterruptedException {
+    public void buzz(Runnable printBuzz) {
         synchronized (mutex){
             while(num<=n){
                 if(num%3==0|| num%5!=0){
@@ -35,12 +34,11 @@ public class FizzBuzz {
             mutex.notify();
         }
     }
-    // printFizzBuzz.run() outputs "fizzbuzz".
-    public void fizzbuzz(Runnable printFizzBuzz) throws InterruptedException {
+    public void fizzbuzz(Runnable printFizzBuzz) {
         synchronized (mutex){
             while(num<=n){
                 if(num%3!=0|| num%5!=0){
-                    mutex.wait(); //enter wait queue
+                    mutex.wait();
                     continue;
                 }
             }
@@ -49,9 +47,7 @@ public class FizzBuzz {
             mutex.notify();
         }
     }
-    /*
-    // printNumber.accept(x) outputs "x", where x is an integer.
-    public void number(IntConsumer printNumber) throws InterruptedException {
+    public void number(IntConsumer printNumber) {
         synchronized (mutex){
             while(num<=n){
                 if(num%3==0|| num%5==0){
@@ -63,6 +59,5 @@ public class FizzBuzz {
             num++;
             mutex.notify();
         }
-    }
-    */
+    }*/
 }

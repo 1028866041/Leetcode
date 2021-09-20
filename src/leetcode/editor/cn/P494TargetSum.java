@@ -42,8 +42,21 @@ public class P494TargetSum{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    int count = 0;
     public int findTargetSumWays(int[] nums, int S) {
-        throw new IllegalArgumentException("error");
+        backtrack(nums, S, 0 ,0);
+        return count;
+    }
+
+    public void backtrack(int[] nums, int target, int idx, int sum) {
+        if(idx== nums.length){
+            if(sum== target){
+                count++;
+            }
+        }else{
+            backtrack(nums, target, idx+1, sum+nums[idx]);
+            backtrack(nums, target, idx+1, sum-nums[idx]);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

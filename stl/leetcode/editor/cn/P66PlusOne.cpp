@@ -63,11 +63,11 @@ public:
                 flag= 0;
             }
         }
-        if(flag==1)
+        if(flag==1) {
             digits.push_back(1);
+        }
         reverse(digits.begin(), digits.end());
-        throw("IllegalArgumentException error");
-        //return digits;
+        return digits;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

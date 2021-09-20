@@ -74,6 +74,8 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class P133CloneGraph{
@@ -99,29 +101,22 @@ public class P133CloneGraph{
         }
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public List<Node> neighbors;
-    public Node() {
-        val = 0;
-        neighbors = new ArrayList<Node>();
-    }
-    public Node(int _val) {
-        val = _val;
-        neighbors = new ArrayList<Node>();
-    }
-    public Node(int _val, ArrayList<Node> _neighbors) {
-        val = _val;
-        neighbors = _neighbors;
-    }
-}
-*/
-
 class Solution {
+    HashMap<Node,Node> map= new HashMap<>();
     public Node cloneGraph(Node node) {
-        throw new IllegalArgumentException("error");
+        if(node== null){
+            return node;
+        }
+        if(map.containsKey(node)){
+            return map.get(node);
+        }
+        //创建节点添加邻居到map value
+        Node res= new Node(node.val, new ArrayList<>());
+        map.put(node, res);
+        for(Node neigh: node.neighbors) {
+            res.neighbors.add(cloneGraph(neigh));
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
