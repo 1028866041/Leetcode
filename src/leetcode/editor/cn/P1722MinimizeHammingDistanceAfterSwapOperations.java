@@ -59,6 +59,18 @@ public class P1722MinimizeHammingDistanceAfterSwapOperations{
     }    
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    int[] parent;
+    int find(int x){
+        if(x== parent[x])
+            return x;
+        return parent[x]= find(parent[x]);
+    }
+    void merge(int x, int y){
+        int xs=find(x),ys=find(y);
+        if(xs!= ys){
+            parent[xs]= ys;
+        }
+    }
     public int minimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {
         throw new IllegalArgumentException("error");
     }

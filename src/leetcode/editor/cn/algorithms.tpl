@@ -213,34 +213,18 @@ func dijkstra(num[][]){
      return dist[heights.length-1][heights[0].length-1];
 }
 
-func dsu(u,v){
-    int[] parent,rank;
-    dsu(n){
-        for(i=0;i<=n;i++){
-            parent[i]=i;
-            rank[i]=i;
-        }
+class dsu{
+    int[] parent;
+    find(x){
+        if(x==parent(x))
+            return x;
+        return parent[x]=find(parent[x]);
     }
-    union(u,v){
-        int pu=find(u),pv=find(v);
-        if(pu==pv)
-            return false;
-        if(rank[pv]>rank[pu])
-            parent[pu]=pv;
-        else if(rank[pv]<rank[pu])
-            parent[pv]=pu;
-        else{
-            parent[pv]=pu;
-            rank[pu]+=1;
+    merge(x,y){
+        int xs=find(x),ys=find(y);
+        if(xs!= ys){
+            parent[xs]= ys;
         }
-        return true;
-    }
-    find(n){
-        while(parent[u]!=u){
-            parent[u]=parent[parent[u]];
-            u=parent[u];
-        }
-        return u;
     }
 }
 

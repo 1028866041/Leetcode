@@ -2835,11 +2835,171 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P1263MinimumMovesToMoveABoxToTheirTargetLocation.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P1263MinimumMovesToMoveABoxToTheirTargetLocation.cpp" />
+              <option name="questionId" value="1389" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P127WordLadder.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P127WordLadder.cpp" />
+              <option name="questionId" value="127" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P1529BulbSwitcherIv.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P1529BulbSwitcherIv.cpp" />
               <option name="questionId" value="1652" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P200NumberOfIslands.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P200NumberOfIslands.cpp" />
+              <option name="questionId" value="200" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P209MinimumSizeSubarraySum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P209MinimumSizeSubarraySum.cpp" />
+              <option name="questionId" value="209" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P239SlidingWindowMaximum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P239SlidingWindowMaximum.cpp" />
+              <option name="questionId" value="239" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P332ReconstructItinerary.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P332ReconstructItinerary.cpp" />
+              <option name="questionId" value="332" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P42TrappingRainWater.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P42TrappingRainWater.cpp" />
+              <option name="questionId" value="42" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P529Minesweeper.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P529Minesweeper.cpp" />
+              <option name="questionId" value="529" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P532KDiffPairsInAnArray.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P532KDiffPairsInAnArray.cpp" />
+              <option name="questionId" value="532" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P547NumberOfProvinces.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P547NumberOfProvinces.cpp" />
+              <option name="questionId" value="547" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P560SubarraySumEqualsK.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P560SubarraySumEqualsK.cpp" />
+              <option name="questionId" value="560" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P684RedundantConnection.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P684RedundantConnection.cpp" />
+              <option name="questionId" value="684" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P685RedundantConnectionIi.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P685RedundantConnectionIi.cpp" />
+              <option name="questionId" value="685" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P739DailyTemperatures.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P739DailyTemperatures.cpp" />
+              <option name="questionId" value="739" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P84LargestRectangleInHistogram.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P84LargestRectangleInHistogram.cpp" />
+              <option name="questionId" value="84" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P85MaximalRectangle.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P85MaximalRectangle.cpp" />
+              <option name="questionId" value="85" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P901OnlineStockSpan.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P901OnlineStockSpan.cpp" />
+              <option name="questionId" value="937" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P924MinimizeMalwareSpread.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P924MinimizeMalwareSpread.cpp" />
+              <option name="questionId" value="960" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P934ShortestBridge.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P934ShortestBridge.cpp" />
+              <option name="questionId" value="971" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/stl/leetcode/editor/cn/P962MaximumWidthRamp.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/stl/leetcode/editor/cn/P962MaximumWidthRamp.cpp" />
+              <option name="questionId" value="1002" />
             </LeetcodeEditor>
           </value>
         </entry>

@@ -21,7 +21,7 @@
 // 
 //
 // 
-//输入: edges = [[1,2], [2,3], [3,4], [1,4], [1,5]]
+//输入: edges = [[1,2], [2,3], [3,4], [1,4], [1,5] ]
 //输出: [1,4]
 // 
 //
@@ -50,8 +50,33 @@ using namespace std;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
+    vector<int> parent;
+    int find(int x){
+        if(x==parent[x])
+            return x;
+        return parent[x]= find(parent[x]);
+    }
+    void merge(int x, int y){
+        int xs=find(x),ys=find(y);
+        if(xs!= ys){
+            parent[xs]= ys;
+        }
+    }
+
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        throw("IllegalArgumentException error");
+        parent.resize(edges.size()+1);
+        for(int i=1;i<=edges.size();i++){
+            parent[i]= i;
+        }
+        for(auto& edge: edges){
+            int x=edge[0],y=edge[1];
+            if(find(x)!= find(y)){
+                merge(x, y);
+            }else{
+                return edge;
+            }
+        }
+        return vector<int>{};
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

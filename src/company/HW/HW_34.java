@@ -1,6 +1,5 @@
 package company.HW;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class HW_34 {
@@ -9,7 +8,6 @@ public class HW_34 {
         while(sc.hasNext()){
             char[] str= sc.nextLine().toCharArray();
             Arrays.sort(str);
-            /*
             List<Character> ls= new ArrayList<>();
             for(char c:str)
                 ls.add(c);
@@ -38,7 +36,7 @@ public class HW_34 {
             String strs="";
             for(int i=0;i<ls.size();i++)
                 strs+=ls.get(i);
-            System.out.println(strs);*/
+            System.out.println(strs);
         }
         sc.close();
     }

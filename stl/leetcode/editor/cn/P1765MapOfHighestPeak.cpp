@@ -59,16 +59,40 @@
 #include<string>
 #include<iostream>
 #include<vector>
+#include<queue>
 using namespace std;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 public:
     vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
-        throw("IllegalArgumentException error");
-    }
-
-    void traverse(){
+        int m= isWater.size(), n= isWater[0].size();
+        vector<vector<int>> res(m, vector<int>(n,-1));
+        queue<pair<int,int>> queue;
+        for(auto i=0;i<m;i++){
+            for(auto j=0;j<n;j++){
+                if(isWater[i][j]==1){
+                    queue.push({i,j});
+                    res[i][j]= 0;
+                }
+            }
+        }
+        while(queue.size()>0){
+            auto par= queue.front();
+            queue.pop();
+            int x= par.first;
+            int y= par.second;
+            int dir[4][2]= {{-1,0},{0,1},{1,0},{0,-1}};
+            for(auto d: dir){
+                int xs= x+d[0];
+                int ys= y+d[1];
+                if(xs>=0&&xs<m&&ys>=0&&ys<n&&res[xs][ys]==-1){
+                    res[xs][ys]= res[x][y]+1;
+                    queue.push({xs,ys});
+                }
+            }
+        }
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
