@@ -50,7 +50,10 @@
 // 👍 24 👎 0
 
 package leetcode.editor.cn;
- 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class P1722MinimizeHammingDistanceAfterSwapOperations{
     public static void main(String[] args) {
         // TO TEST
@@ -72,6 +75,11 @@ class Solution {
         }
     }
     public int minimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {
+        parent = new int[source.length];
+        for (int[] swp: allowedSwaps){
+            merge(swp[0], swp[1]);
+        }
+        Map<Integer,Map<Integer,Integer>> map= new HashMap<>();
         throw new IllegalArgumentException("error");
     }
 }
