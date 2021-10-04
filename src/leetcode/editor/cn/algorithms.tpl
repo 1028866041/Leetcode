@@ -278,6 +278,32 @@ func memory(){
     }
 }
 
+Genetic-Algorithm()
+{
+    调用调度生成算法N次并将生成的符号串存入Group;
+	Do
+	{
+		计算Group中每个符号串的适应度值;
+		调用繁殖算法;
+		令BESTSIRING为Group中适应值最大的符号串;
+		For(i=1 ; i<=GroupNum/2; i++)
+		{
+			从Group中取出两个符号串并以概率P¬1调用交叉操作;
+			if(交叉操作发生)
+				将生成的符号串加入Temp;
+			else
+				将原符号串加入Temp;
+		}
+		对Temp中的每一个符号串，以概率P2调用突变算法;
+		if(突变操作发生)
+			将新生成的符号串加入NewGroup;
+		else
+			将原符号串加入NewGroup;
+			用BESTSIRNG取代Group中适应度值最小的符号串;
+	}
+	while(算法尚未满足收敛准则);
+}
+
 public class Main {
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
