@@ -17,10 +17,11 @@ int main(int argc, char **argv)
     rb_trees();
     mem();
     file_handle();
-
     unique_ptr<int> p(new int(1));
     cout<<p<<": ";
     cout<<numeric_limits<string>::is_specialized<<endl;
     //system("pause");
+
+    GeneticAlgorithm();
     return 0;
-}
+}1
