@@ -19,7 +19,7 @@ func main(){
 }
 ${question.code}
 
-${question.content}
+${question.content}ds
 \#include<iostream>
 \#include<algorithm>
 \#include<vector>

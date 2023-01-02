@@ -1,27 +1,7 @@
-#include"ptr.h"
 #include<iostream>
-#include<limits>
-#include<string>
 using namespace std;
 
-extern int conts();
-extern int rb_trees();
-extern int mem();
-extern int file_handle();
-
-int main(int argc, char **argv)
+int main()
 {
-    cout<<__cplusplus<<endl;
-    conts();
-    //allocators();
-    rb_trees();
-    mem();
-    file_handle();
-    unique_ptr<int> p(new int(1));
-    cout<<p<<": ";
-    cout<<numeric_limits<string>::is_specialized<<endl;
-    //system("pause");
-
-    GeneticAlgorithm();
     return 0;
-}1
+}

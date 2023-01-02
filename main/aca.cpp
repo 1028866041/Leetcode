@@ -314,7 +314,7 @@ void Project::StartSearch()
     }
 }
 
-int main()
+int aca()
 {
     Project TSP;
     TSP.GetAnt();

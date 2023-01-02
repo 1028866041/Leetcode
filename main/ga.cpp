@@ -27,8 +27,8 @@ public:
     double GetLower() const;
 
 private:
-    double upper; //变量上限
-    double lower; //变量下限
+    double upper = 0; //变量上限
+    double lower = 0; //变量下限
 };
 
 class Individual
@@ -254,7 +254,7 @@ void Crossing()
                 {
                     bitset<length> arrayb((array[j] + 3.0) * pow(10, 6));
                     bitset<length> array2b((array2[j] + 3.0) * pow(10, 6));
-                    local = rand() % length;
+                    local2 = rand() % length;
                     //单点交叉交换parent基因
                     for (int k = 0; k < local; k++)
                     {
@@ -405,4 +405,10 @@ void GeneticAlgorithm()
     }
     cout << "x1=" << nowPop[id].GetVar()[0] << " "
          << "x2=" << nowPop[id].GetVar()[1] << " max " << maxFitness << endl;
+}
+
+int ga()
+{
+    GeneticAlgorithm();
+    return 0;
 }

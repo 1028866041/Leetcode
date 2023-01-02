@@ -73,8 +73,6 @@ void bfs(Graph *g)
         while(q->size!=0)
         {
             dequeue(q, &i); //neighbour
-            
-            //todo   
             if(!visited[g->vert])
             {
                 visited[g->vert]= true;
